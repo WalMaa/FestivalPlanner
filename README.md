@@ -22,9 +22,9 @@ This is a hobby project which allows users to see upcoming festivals in Finland.
 
 * Node.js (development build uses v16.14.2.)
 
-## Installation clone the repository
+## Clone the repository
 
-    link
+    git clone https://github.com/WalMaa/FestivalPlanner.git
 
 Change into the project directory
 

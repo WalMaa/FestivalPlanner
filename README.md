@@ -38,7 +38,7 @@ Change into the project directory
 
 # Project Status
 
-This project is actively being developed. The latest version is  `v.1.0.0`
+This project is actively being developed. The latest version is  `v.0.1.0`
 
 ## Current Features
 * Upcoming

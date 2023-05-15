@@ -15,11 +15,13 @@ module.exports = {
         colors: {
           transparent: 'transparent',
           current: 'currentColor',
-          black: '#000000',
-          white: '#ffffff',
+          black: '#454958',
+          white: '#f2f2f2',
+          gray: '#e5e5e5',
           yellow: '#ffc542',
-          orange: '#ff5f1f',
-          red: '#fc3134'
+          orange: '#ff7e40',
+          red: '#fd614a',
+          steel: '#e7effe'
         },
     },
   },

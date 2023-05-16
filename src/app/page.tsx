@@ -1,15 +1,18 @@
 "use client"
 
 import React from 'react';
-import SideBar from './SideBar';
+import SideBar from './components/SideBar';
 import MapImage from "./images/MapFinland.svg"
-import Search from './Search';
+import Search from './components/Search';
+import FilterBar from './components/FilterBar';
 
 export default function Home() {
 
   function handleClick() {
     console.log("Clicked");
   }
+
+
 
 
 
@@ -39,10 +42,7 @@ export default function Home() {
           <div className="flex-col flex-1 w-full px-4 py-6 sm:px-0 text-center">
 
             {/* Filter Bar */}
-            <div className='flex bg-red mx-auto justify-around p-4'>
-              <li>Text</li>
-              <li>Text</li><li>Text</li><li>Text</li>
-            </div>
+            <FilterBar/>
 
             <div className='flex flex-1 justify-center'>
               {/* Map */}

@@ -58,7 +58,7 @@ export default function Home() {
       </div>
 
       {/* Right Side */}
-      <div className='flex flex-1 bg-black'>
+      <div className='flex flex-1 '>
 
       </div>
 

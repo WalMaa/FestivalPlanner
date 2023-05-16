@@ -8,6 +8,7 @@ export const metadata = {
   description: 'Löydä kaikki Suomen festarit!',
   
   
+  
 }
 
 export default function RootLayout({

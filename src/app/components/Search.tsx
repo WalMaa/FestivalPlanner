@@ -1,6 +1,6 @@
 "use client"
-import Cross from './images/Cross.svg';
-import SearchIcon from './images/SearchIcon.svg'
+import Cross from '../images/Cross.svg';
+import SearchIcon from '../images/SearchIcon.svg'
 import { useRef, useState } from "react";
 
 const Search = () => {

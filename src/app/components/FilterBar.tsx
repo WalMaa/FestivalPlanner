@@ -14,6 +14,11 @@ const FilterBar = () => {
       });
 
     const genres = artistsData.map(artist => {
+      let genres: string[] = [];
+      if (!genres.includes(artist.genre)) {
+        genres.push(artist.genre)
+      }
+      return genres;
     })
 
     return (
@@ -24,26 +29,28 @@ const FilterBar = () => {
                 options = {artists.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
                 groupBy={(artist) => artist.firstLetter}
                 getOptionLabel={(artist) => artist.name}
-                sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Artistit" />}
+                sx={{ width: 250 }}
+                renderInput={(params) => <TextField {...params} variant="standard" label="Artistit" />}
               />
 
-              <button>
                 <Autocomplete 
                 id="Months"
                 noOptionsText='Ei löytynyt'
                 options = {months}
                 disableClearable={true}
-                sx={{ width: 300 }}
-                renderInput={(params) => <TextField {...params} label="Kuukaudet" />} 
-                
-                
+                sx={{ width: 250 }}
+                renderInput={(params) => <TextField {...params} variant="standard" label="Kuukaudet" />} 
                 />
-              </button>
 
-              <button>
-                Genret
-              </button>
+                <Autocomplete 
+                id="Genres"
+                noOptionsText='Ei löytynyt'
+                options = {genres}
+                sx={{ width: 250 }}
+                limitTags={3}
+                renderInput={(params) => <TextField {...params} variant="standard" label="Genret" />} 
+                />
+
             </div>
     )
 }

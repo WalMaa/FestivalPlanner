@@ -6,9 +6,6 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   title: 'Mis Festarit?',
   description: 'Löydä kaikki Suomen festarit!',
-  
-  
-  
 }
 
 export default function RootLayout({

@@ -19,12 +19,13 @@ const artistsData = [
   { id: 17, name: "The Weeknd", genre: "R&B/Pop" },
 ]
 
-const festivalData = [
+const festivals = [
   {
     id: 1,
     name: "Summer Music Festival",
-    date: "2023-08-10",
-    location: "City Park",
+    startDate: "2023-08-10",
+    endDate: "2023-08-12",
+    location: "Oulu",
     description: "A music festival featuring various genres and artists.",
     artists: [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -34,8 +35,9 @@ const festivalData = [
   {
     id: 2,
     name: "Winter Wonderland",
-    date: "2023-12-20",
-    location: "Snowy Mountain Resort",
+    startDate: "2023-12-20",
+    endDate: "2023-12-21",
+    location: "Lappeenranta",
     description: "A winter festival filled with snow activities and entertainment.",
     artists: [
       11, 12, 13, 4, 14, 15, 7, 16, 17, 1
@@ -44,4 +46,4 @@ const festivalData = [
 
 ];
 
-export {festivalData, artistsData};
+export {festivals, artistsData};

@@ -29,7 +29,7 @@ const Search = () => {
     }
 
     return (
-        <div className='relative justify-center align-middle flex self-end m-10 delay-150 hover:scale-110 transition-transform duration-300'>
+        <div className=' mb-14 relative justify-center align-middle flex self-end m-10 delay-150 hover:scale-110 transition-transform duration-300'>
                 {/*Search Text Box */}
             <label>
                 <input

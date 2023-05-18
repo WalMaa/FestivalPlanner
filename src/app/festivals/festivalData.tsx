@@ -35,7 +35,7 @@ const festivals = [
   {
     id: 2,
     name: "Winter Wonderland",
-    startDate: "2023-12-20",
+    startDate: "2023-04-20",
     endDate: "2023-12-21",
     location: "Lappeenranta",
     description: "A winter festival filled with snow activities and entertainment.",

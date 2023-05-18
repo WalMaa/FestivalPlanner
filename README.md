@@ -14,7 +14,7 @@ This is a hobby project which allows users to see upcoming festivals in Finland.
 * Next.js 13
 * Typescript
 * Tailwind CSS
-* Firebase
+* PocketBase
 
 # Installation
 
@@ -38,7 +38,7 @@ Change into the project directory
 
 # Project Status
 
-This project is actively being developed. The latest version is  `v.0.1.0`
+This project is actively being developed. The latest version is  `v.0.1.1`
 
 ## Current Features
 * Upcoming
@@ -47,4 +47,5 @@ This project is actively being developed. The latest version is  `v.0.1.0`
 * Upcoming
 
 # Release History
+* `V.0.1.1` - Initial UI and data structure. Changed Firebase to PocketBase due to the need for only a simple relational database solution. (18-05-2023)
 * `V.0.1.0` - Project initialization (14-05-2023)

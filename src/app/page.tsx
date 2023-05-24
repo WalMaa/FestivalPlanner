@@ -1,17 +1,35 @@
 "use client"
 
-import React from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 import SideBar from './components/SideBar';
 import MapImage from "./images/MapFinland.svg"
 import Search from './components/Search';
 import FilterBar from './components/FilterBar';
-import { festivals } from './festivals/festivalData'
-import Fire from './images/Fire.svg'
-import HourGlass from './images/HourGlass.svg'
+import { getFestivals } from './api/pocketBase';
+import UpcomingFestivalsBar from './components/UpcomingFestivalsBar';
+
+const FestivalDataContext = createContext<any>(null)
 
 export default function Home() {
 
+  const [festivalData, setFestivalData] = useState<any>([]);
+  
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const data = await getFestivals();
+        setFestivalData(data);
+      } catch (error) {
+        console.error('Error fetching festival data:', error);
+      }
+    }
+    
+    fetchData();
+  }, []);
+  
   return (
+    <FestivalDataContext.Provider value={festivalData}>
+
     <div className=" flex flex-1 bg-white dark:bg-black h-screen">
 
 
@@ -53,48 +71,12 @@ export default function Home() {
       </div>
 
       {/* Right Side */}
-      <div className='flex flex-1 justify-end align-bottom flex-col'>
-        <div className='flex p-2 bg-yellow m-10 h-96 rounded-xl shadow-md align-bottom max-w-sm'>
-          <ol className='flex flex-1 flex-col-reverse overflow-y-auto'>
-            {festivals.map(festival => {
-              let startDate = new Date(festival.startDate).getTime();
-              let currentDate = Date.now();
-              let timeDifference;
-              let Icon;
-              
-                // if the festival has already started. Use the endDate instead and the Icon is changed accordingly.
-              if (currentDate > startDate) {
-                let endDate = new Date(festival.endDate).getTime();
-                timeDifference = endDate -currentDate;
-                Icon = Fire
-              } else {
-                Icon = HourGlass
-                timeDifference = startDate - currentDate;
-              }
-              const daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+      <UpcomingFestivalsBar/>
 
-              return (
-
-                <li className='flex h-16 bg-red rounded-md border-b-1 my-1 px-2 py-1'
-                  key={festival.id}>
-                    <div className='flex flex-col w-46 overflow-hidden'>
-                  <span className='text-lg truncate'>{festival.name}</span> 
-                  <span className='text-slate-400'>{festival.location} </span> 
-                    </div>
-                    <div className='flex flex-1 justify-end mx-2'>
-                      <Icon width="38"/>
-                  <span className='text-xl text-right w-10 self-center' >{daysRemaining}</span>
-                    </div>
-
-                </li>
-              )
-            })}
-
-          </ol>
-        </div>
-      </div>
 
 
     </div>
+    </FestivalDataContext.Provider>
   );
 }
+export { FestivalDataContext }

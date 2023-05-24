@@ -36,7 +36,7 @@ const Search = () => {
                     // checks with a ternary operator if the search has been clicked and if true extends the search bar
                     className={`absolute right-0 placeholder:italic placeholder:text-slate-400 block bg-white border
                     border-slate-300 rounded-full py-2 pl-9 pr-3 shadow-md w-0 focus:outline-none focus:border-sky-200 focus:ring-sky-200
-                    focus:ring-1 text-black h-14 focus:w-64 ${isSearchActive ? 'w-64 transition-width duration-300' : 'transition-width duration-300'}`}
+                    focus:ring-1 text-black h-14 focus:w-64 transition-width duration-300 ${isSearchActive ? 'w-64 ' : ''}`}
                     type='text'
                     ref={searchRef}
                     placeholder='Search'

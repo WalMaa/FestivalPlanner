@@ -8,14 +8,14 @@ const Header = () => {
     <div className="flex relative">
 
       <div className={`flex align-middle transition-all duration-500 bg-orange h-20 px-4 ${isExpanded ? 'w-full' : 'w-24 rounded-br-lg'}`}>
-        <button className="pl-2" onClick={() => setIsExpanded(!isExpanded)}>
+        <button className={` items-center justify-center ${isExpanded ? undefined : 'flex flex-1'}`} onClick={() => setIsExpanded(!isExpanded)}>
           {isExpanded ?
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" aria-label="Close Menu" />
             </svg>
             :
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" aria-label="Open Menu" />
             </svg>
 
           }

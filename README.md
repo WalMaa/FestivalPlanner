@@ -31,6 +31,12 @@ Change into the project directory
 ## Install dependencies 
 
     npm install
+    
+## Start the PocketBase server
+
+ Navigate to the pocketbase directory on a separate CLI and enter the following command:
+ 
+    pocketbase serve
 
 ## Start the development server
 
@@ -38,7 +44,7 @@ Change into the project directory
 
 # Project Status
 
-This project is actively being developed. The latest version is  `v.0.1.1`
+This project is actively being developed. The latest version is  `v.0.2.1`
 
 ## Current Features
 * Upcoming
@@ -47,5 +53,6 @@ This project is actively being developed. The latest version is  `v.0.1.1`
 * Upcoming
 
 # Release History
+* `V.0.2.1` - Pocketbase integration.
 * `V.0.1.1` - Initial UI and data structure. Changed Firebase to PocketBase due to the need for only a simple relational database solution. (18-05-2023)
 * `V.0.1.0` - Project initialization (14-05-2023)

@@ -9,9 +9,9 @@ const UpcomingFestivalsBar = () => {
 
 
     return (
-        <div className='flex flex-1 justify-end align-bottom flex-col '>
-                <div className={`transition-all  duration-300 flex flex-col-reverse p-2 bg-yellow m-10
-                  rounded-xl shadow-md max-w-sm ${isExpanded ? 'h-96' : 'h-14'}`}>
+        <div className='flex justify-end align-bottom flex-col '>
+                <div className={`flex transition-all w-80 duration-300 flex-col-reverse p-2 bg-yellow m-10
+                  rounded-xl shadow-md ${isExpanded ? 'h-96' : 'h-14'}`}>
                     <button onClick={() => setIsExpanded(!isExpanded)}>
                         {isExpanded ?
                             // Expanded
@@ -36,12 +36,12 @@ const UpcomingFestivalsBar = () => {
                                     d="M4.5 15.75l7.5-7.5 7.5 7.5" />
                             </svg>
                             <div className='flex align-middle justify-center'>
-                            <h3 className='text-lg mx-10 my-1'>Tulevat Festivaalit</h3>
+                            <h3 className='text-xl mx-10 my-1'>Tulevat Festivaalit</h3>
                             </div>
                                 </div>
                             }
                     </button>
-                    <ol className='flex flex-1 flex-col overflow-y-auto scrollbar-hide'>
+                    <ol className='flex flex-1 flex-col overflow-y-auto scroll-smooth scrollbar-hide'>
                         {festivalData.map((festival: any) => {
                             let startDate = new Date(festival.startDate).getTime();
                             let currentDate = Date.now();
@@ -64,8 +64,8 @@ const UpcomingFestivalsBar = () => {
                                 <li className='flex h-16 bg-red rounded-md border-b-1 my-1 px-2 py-1'
                                     key={festival.id}>
                                     <div className='flex flex-col w-46 overflow-hidden'>
-                                        <span className='text-lg truncate'>{festival.name}</span>
-                                        <span className='text-slate-400'>{festival.location} </span>
+                                        <span className='text-lg truncate text-left'>{festival.name}</span>
+                                        <span className='text-slate-400 text-left'>{festival.location} </span>
                                     </div>
                                     <div className='flex flex-1 justify-end mx-2'>
                                         <Icon width="38" />

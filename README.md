@@ -44,15 +44,16 @@ Change into the project directory
 
 # Project Status
 
-This project is actively being developed. The latest version is  `v.0.2.1`
+This project is actively being developed. The latest version is  `v.0.2.2`
 
 ## Current Features
-* Upcoming
+* Allows users to see upcoming festivals on a timeline
 
 ## Known issues
 * Upcoming
 
 # Release History
+* `V.0.2.2` - Upcoming festivals bar implemented.
 * `V.0.2.1` - Pocketbase integration.
 * `V.0.1.1` - Initial UI and data structure. Changed Firebase to PocketBase due to the need for only a simple relational database solution. (18-05-2023)
 * `V.0.1.0` - Project initialization (14-05-2023)

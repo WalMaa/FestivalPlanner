@@ -20,7 +20,7 @@ const Header = () => {
 
           }
         </button>
-        {isExpanded ?
+        {isExpanded && (
           //  Expanded View
           <ul className="flex overflow-hidden flex-1 justify-evenly px-4 py-1 max-h-14 ">
             <li className="flex align-middle">
@@ -55,14 +55,15 @@ const Header = () => {
                 Palaute
               </a>
             </li>
-          </ul> : undefined
+          </ul>
+        )
         }
-        
-          <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
-            <h1 className={`text-3xl font-bold text-black m-auto transition-opacity duration-300 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
-              Mis Festarit?
-            </h1>
-          </div>
+
+        <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
+          <h1 className={`text-3xl font-bold text-black m-auto transition-opacity duration-300 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
+            Mis Festarit?
+          </h1>
+        </div>
       </div>
     </div>
   )

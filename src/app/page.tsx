@@ -2,12 +2,11 @@
 
 import React, { createContext, useEffect, useState } from 'react';
 import Header from './components/Header';
-import MapImage from "./images/MapFinland.svg"
 import Search from './components/Search';
 import FilterBar from './components/FilterBar';
 import { getArtists, getFestivals } from './api/pocketBase';
 import UpcomingFestivalsBar from './components/UpcomingFestivalsBar';
-import LocationButton from './components/LocationButton';
+import MapElement from './components/MapElement';
 
 const FestivalDataContext = createContext<any>(null);
 const ArtistsDataContext = createContext<any>(null);
@@ -54,11 +53,8 @@ export default function Home() {
                 </div>
 
                 {/* Map */}
-                <div className=" flex flex-1 justify-center hover:scale-105 delay-100 transition-transform group">
-                  <MapImage width="500" strokeWidth="1.5" className="stroke-black dark:stroke-white  fill-none" />
-
-                  <LocationButton />
-
+                <div className=" flex flex-1 justify-center">
+                  <MapElement />
                 </div>
                 {/* Search */}
                 <Search />

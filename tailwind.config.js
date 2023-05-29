@@ -24,9 +24,10 @@ module.exports = {
           steel: '#e7effe'
         },
     },
+    
   },
   plugins: [
-
+    require("daisyui"),
     require('tailwind-scrollbar-hide'),
   ],
 }

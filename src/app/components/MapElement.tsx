@@ -25,7 +25,7 @@ const LocationButton = () => {
     return (
         <span className="flex">
             <MapImage width="500" strokeWidth="1.5" className="stroke-black dark:stroke-white fill-none" />
-            {locations.map((location, index) => {
+            {locations.map((location) => {
                 const locationStyle = getLocationStyle(location.city);
                 const isExpanded = expandedLocation === location.city;
 
@@ -38,8 +38,8 @@ const LocationButton = () => {
                         >
                             <span className="relative w-5 h-5 bg-red rounded-full flex items-center hover:animate-ping transition-all justify-center hover:scale-125"></span>
                         </button>
-                        <div className={isExpanded ? 'block' : 'hidden'}>
-                            <FestivalInfoComponent city={location.city} />
+                        <div >
+                            {isExpanded && <FestivalInfoComponent city={location.city} />}
                         </div>
                     </div>
                 );

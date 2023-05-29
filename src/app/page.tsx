@@ -48,9 +48,6 @@ export default function Home() {
               <FilterBar />
 
               <div className='flex flex-1 justify-center'>
-                <div className='flex flex-1'>
-
-                </div>
 
                 {/* Map */}
                 <div className=" flex flex-1 justify-center">

@@ -38,9 +38,27 @@ const getAccessToken = async () => {
   }
 };
 
+const getGenres = async (artistId: string) => {
+
+  try {
+    const token = await getAccessToken();
+    const response = await axios.get(`https://api.spotify.com/v1/artists/${artistId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
+    const { genres } = response.data;
+    return genres;
+  } catch (error) {
+    console.error('Error retrieving artist genres:', error);
+    return null;
+  }
+};
+
 const getPreview = async (artistId: string) => {
   try {
-    const token = await getAccessToken(); // Await the token retrieval
+    const token = await getAccessToken(); // Awaits the token retrieval
     const response = await axios.get(`https://api.spotify.com/v1/artists/${artistId}/top-tracks`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -50,7 +68,13 @@ const getPreview = async (artistId: string) => {
       },
     });
 
-    const track = response.data.tracks[0];
+
+    // Checks if the provided artistId is the primary artist
+    const tracks = response.data.tracks.filter((track: any) => {
+      return track.artists[0].id === artistId;
+    });
+
+    const track = tracks[0];
 
     const trackName: string | null = track.name;
     const playbackUrl: string | null = track.preview_url;
@@ -63,4 +87,4 @@ const getPreview = async (artistId: string) => {
   }
 };
 
-export { getPreview };
+export { getPreview, getGenres };

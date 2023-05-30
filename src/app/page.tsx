@@ -7,12 +7,13 @@ import FilterBar from './components/FilterBar';
 import { getArtists, getFestivals } from './api/pocketBase';
 import UpcomingFestivalsBar from './components/UpcomingFestivalsBar';
 import MapElement from './components/MapElement';
+import { Festival, Artist } from './types'
 
-const FestivalDataContext = createContext<any>(null);
-const ArtistsDataContext = createContext<any>(null);
+const FestivalDataContext = createContext< Festival [] | null>(null);
+const ArtistsDataContext = createContext< Artist [] | null>(null);
 
 export default function Home() {
-  
+
 
   const [festivalData, setFestivalData] = useState<any>([]);
   const [artistsData, setArtistsData] = useState<any>([]);
@@ -48,6 +49,9 @@ export default function Home() {
               <FilterBar />
 
               <div className='flex flex-1 justify-center'>
+                <div className='flex flex-1'>
+
+                </div>
 
                 {/* Map */}
                 <div className=" flex flex-1 justify-center">

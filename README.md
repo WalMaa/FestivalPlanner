@@ -15,6 +15,7 @@ This is a hobby project which allows users to see upcoming festivals in Finland.
 * Typescript
 * Tailwind CSS
 * PocketBase
+* Spotify API
 
 # Installation
 
@@ -44,7 +45,7 @@ Change into the project directory
 
 # Project Status
 
-This project is actively being developed. The latest version is  `v.0.3.0`
+This project is actively being developed. The latest version is  `v.0.3.1`
 
 ## Current Features
 * Allows users to see upcoming festivals on a timeline
@@ -53,6 +54,7 @@ This project is actively being developed. The latest version is  `v.0.3.0`
 * Upcoming
 
 # Release History
+* `V.0.3.1` - Enhanced responsitivity for mobile. (23-06-2023)
 * `V.0.3.0` - Users can select a location and see the festivals and artists.
 * `V.0.2.2` - Upcoming festivals bar implemented.
 * `V.0.2.1` - Pocketbase integration.

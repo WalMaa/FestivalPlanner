@@ -21,12 +21,27 @@ body {
   background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-@keyframes scrolling-text {
-  0% { transform: translateX(5%); }
-  90% { transform: translateX(-60%); }
-  100% { transform: translateX(5%); }
+.wrapper {
+  max-width: 100%;
+  overflow: hidden;
 }
 
-.animate-scrolling-text {
-  animation: scrolling-text 4s linear infinite;
+.marquee {
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  animation: marquee 8s linear infinite;
+}
+
+.marquee h4 {
+  display: inline-block;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
 }

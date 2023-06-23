@@ -1,8 +1,8 @@
-import { Key, useContext, useState, useEffect } from "react";
-import { FestivalDataContext } from "../page";
+import { useContext, useState, useEffect } from "react";
+import { FestivalDataContext } from "../../page";
 import React from "react";
 import ArtistList from "./ArtistList";
-import { Festival } from '../types'
+import { Festival } from '../../types'
 const convertDate = (timestamp: string) => {
     const date = new Date(timestamp);
     const day = date.getDate().toString().padStart(2, '0');
@@ -18,7 +18,7 @@ const FestivalInfoComponent = ({ city, expansionState }: { city: string, expansi
     const initialFestival = festivalsAtLocation.length > 0 ? festivalsAtLocation[0].id : null;
     const [selectedFestival, setSelectedFestival] = useState(initialFestival);
 
-    // since festivalinfocomponents are prerendered this assigns the initialvalue once the components have loaded
+    // since festivalinfocomponents are prerendered this assigns the initialvalue for the selected festival once the components have loaded
     useEffect(() => {
         if (festivalsAtLocation && festivalsAtLocation.length > 0) {
             setSelectedFestival(festivalsAtLocation[0].id);
@@ -32,13 +32,13 @@ const FestivalInfoComponent = ({ city, expansionState }: { city: string, expansi
     }
 
     return (
-        <div className="absolute top-1/3 right-1/2 bg-white shadow-md rounded-lg p-2 z-20">
+        <div className="absolute top-1/3 right-1/2 bg-white shadow-md rounded-lg p-2 z-10">
             <div className="flex flex-col">
                 <div className="flex">
                     {festivalsAtLocation.map((festival: { id: string; name: string; }) => (
                         <div className="flex-1" key={festival.id}>
                             <button
-                                className={`p-2 rounded-lg hover:scale-110 transition-transform shadow-md  duration-150 ${selectedFestival === festival.id ? 'bg-red' : 'bg-gray'
+                                className={`p-2 rounded-lg hover:scale-110 transition-transform shadow-sm  duration-150 ${selectedFestival === festival.id ? 'bg-red shadow-red' : 'bg-gray'
                                     }`}
                                 onClick={() => setSelectedFestival(festival.id)}
                             >
@@ -48,17 +48,18 @@ const FestivalInfoComponent = ({ city, expansionState }: { city: string, expansi
                     ))}
                     {/* Close Button */}
                     <span className="relative top-1 right-7 h-0 w-0">
-                    <button onClick={() => expansionState = !expansionState} aria-label='Close festival menu'>
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" w-8 h-8">
-                            <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+                        <button onClick={() => expansionState = !expansionState} aria-label='Close festival menu'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" w-8 h-8">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
                     </span>
                 </div>
                 <div>
                     {festivalsAtLocation.map((festival: Festival) => (
                         <div key={festival.id} className={`${selectedFestival === festival.id ? 'block' : 'hidden'} bg-gray shadow-md mt-2 rounded-lg p-4`}>
-                            <a className="flex items-center" rel="noopener" target="_blank" href={festival.url}>
+                            <a className="flex items-center" rel="noopener" target="_blank" href={festival.url}
+                            >
                                 <span className="flex justify-around items-center">
                                     <h2 className="text-2xl text-center">{festival.name}</h2>
                                 </span>

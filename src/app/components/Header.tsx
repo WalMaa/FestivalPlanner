@@ -1,32 +1,31 @@
 import { useState } from "react";
 
-
 const Header = () => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
-    <div className="flex relative">
+    <div className="relative z-10">
 
-      <header className={`flex align-middle transition-all duration-500 bg-orange h-20 px-4 ${isExpanded ? 'w-full' : 'w-24 rounded-br-lg'}`}>
-        <button className={` items-center justify-center ${isExpanded ? undefined : 'flex flex-1'}`} onClick={() => setIsExpanded(!isExpanded)}>
+      <header className={`absolute top-0 left-0 right-0 flex flex-col md:h-20 md:flex-row align-middle transition-width duration-500 md:bg-gradient-to-r from-orange-800 via-orange-700 h-screen to-orange-800  px-4 ${isExpanded ? 'w-4/6 md:w-full bg-orange-800' : 'w-20 rounded-br-lg'}`}>
+        <button className={` h-20 items-center justify-center`} onClick={() => setIsExpanded(!isExpanded)}>
           {isExpanded ?
-            <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close Menu" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/>
+            <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close Menu" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" hover:stroke-white w-10 h-10 hover:-translate-x-1 transition-all duration-300 hover:scale-110">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
             :
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Open Menu" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" aria-label="Open Menu" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 hover:stroke-red-600 md:hover:stroke-white hover:-skew-x-6 transition-all duration-300 hover:scale-110">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>
 
           }
         </button>
         {isExpanded && (
           //  Expanded View
-          <ul className="flex overflow-hidden flex-1 justify-evenly px-4 py-1 max-h-14 ">
-            <li className="flex align-middle">
+          <ul className="flex flex-col md:flex-row overflow-hidden flex-1 md:justify-evenly justify-start px-4 py-1 ">
+            <li className="flex align-middle ">
               <a
                 href="#"
-                className=" p-4 text-gray-800 text-3xl hover:bg-gray-200 rounded-xl"
+                className=" p-4 hover:text-white transition-colors text-3xl truncate"
               >
                 Tietoa
               </a>
@@ -34,7 +33,7 @@ const Header = () => {
             <li className="flex align-middle">
               <a
                 href="#"
-                className=" p-4 overflow text-gray-800 text-3xl hover:bg-gray-200 rounded-xl"
+                className=" p-4 hover:text-white transition-colors text-3xl truncate "
               >
                 Pimeä Tila
               </a>
@@ -42,7 +41,7 @@ const Header = () => {
             <li className="flex align-middle">
               <a
                 href="#"
-                className=" p-4 text-gray-800 text-3xl hover:bg-gray-200 rounded-xl"
+                className=" p-4  text-3xl transition-colors hover:text-white truncate"
               >
                 Yhteistiedot
               </a>
@@ -50,7 +49,7 @@ const Header = () => {
             <li className="flex align-middle">
               <a
                 href="#"
-                className=" p-4 text-gray-800 text-3xl hover:bg-gray-200 rounded-xl"
+                className=" p-4  text-3xl truncate transition-colors hover:text-white"
               >
                 Palaute
               </a>
@@ -58,12 +57,6 @@ const Header = () => {
           </ul>
         )
         }
-
-        <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
-          <h1 className={`text-3xl font-bold text-black m-auto transition-opacity duration-300 ${isExpanded ? 'opacity-0' : 'opacity-100'}`}>
-            Mis Festarit?
-          </h1>
-        </div>
       </header>
     </div>
   )

@@ -29,20 +29,20 @@ const Search = () => {
     }
 
     return (
-        <div className=' mb-24 relative justify-center align-middle flex self-end m-10 delay-150 hover:scale-110 transition-transform duration-300'>
+        <div className=' mb-24 relative md:right-0 right-16 justify-center align-middle flex self-end m-10 delay-150 hover:scale-110 transition-transform duration-300'>
                 {/*Search Text Box */}
             <label>
                 <input
                     // checks with a ternary operator if the search has been clicked and if true extends the search bar
                     className={`absolute right-0 placeholder:italic placeholder:text-slate-400 block bg-white border
-                    border-slate-300 rounded-full py-2 pl-9 pr-3 shadow-md w-0 focus:outline-none focus:border-sky-200 focus:ring-sky-200
-                    focus:ring-1 text-black h-14 focus:w-64 transition-width duration-300 ${isSearchActive ? 'w-64 ' : ''}`}
+                    border-slate-300 rounded-full py-2 pl-9 pr-3 shadow-md w-0 focus:outline-none focus:ring-teal-100
+                    focus:ring-2 text-black h-14 focus:w-64 transition-width duration-300 ${isSearchActive ? 'w-64 ' : ''}`}
                     type='text'
                     ref={searchRef}
                     placeholder='Search'
                     name="search" />
             </label>
-            <span className='absolute right-0 flex transition-shadow shadow-lg  hover:ring-2 hover:ring-red duration-300  h-14 w-14 rounded-full py-2 pl-9 pr-3 bg-gradient-to-br from-slate-100 to-slate-300 '>
+            <span className='absolute right-0 flex transition-shadow shadow-lg  hover:ring-2 hover:ring-red-500 duration-300  h-14 w-14 rounded-full py-2 pl-9 pr-3 bg-gradient-to-br from-slate-100 to-slate-300 '>
                 <button onClick={handleSearchClick}>
                 {icon}
                 </button>

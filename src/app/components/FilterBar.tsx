@@ -1,9 +1,10 @@
 import Autocomplete from "@mui/material/Autocomplete"
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { ArtistsDataContext, FestivalDataContext } from '../page';
 import TextField from "@mui/material/TextField";
 import { useContext } from "react";
 import { getGenres } from "../api/spotify";
-import { parseSpotifyId } from "./ArtistList";
+import { parseSpotifyId } from "./Map/ArtistList";
 
 const FilterBar = () => {
 
@@ -23,43 +24,51 @@ const FilterBar = () => {
 
   artistsData?.forEach((artist: { id: string; spotifyId: string }) => {
     getGenres(parseSpotifyId(artist.spotifyId))
-    .then((artistsGenres) => {
-      if (!artistsGenres.some((genre: string) => genres.includes(genre))) {
-        genres.push(...artistsGenres);
-      }
-    });
+      .then((artistsGenres) => {
+        if (!artistsGenres.some((genre: string) => genres.includes(genre))) {
+          genres.push(...artistsGenres);
+        }
+      });
+  });
+
+  const theme = createTheme({
+    palette: {
+      primary: {
+        main: '#fd614a', // Replace with your desired accent color
+      },
+    },
   });
 
   return (
-    <div className='flex mx-auto justify-evenly p-4'>
-      <Autocomplete
-        id="Artists-Grouped"
-        noOptionsText='Ei löytynyt'
-        options={artists?.sort((a: { firstLetter: string; }, b: { firstLetter: string; }) => -b.firstLetter.localeCompare(a.firstLetter)) ?? []}
-        groupBy={(option: { name: string }) => option.name.charAt(0)}
-        getOptionLabel={(artist: { name: string }) => artist.name}
-        sx={{ width: 250 }}
-        renderInput={(params) => <TextField {...params} variant="standard" label="Artistit" />}
-      />
+    <div className='flex justify-evenly p-4 mt-20'>
+      <ThemeProvider theme={theme}>
+        <Autocomplete
+          id="Artists-Grouped"
+          noOptionsText='Ei löytynyt'
+          options={artists?.sort((a: { firstLetter: string; }, b: { firstLetter: string; }) => -b.firstLetter.localeCompare(a.firstLetter)) ?? []}
+          groupBy={(option: { name: string }) => option.name.charAt(0)}
+          getOptionLabel={(artist: { name: string }) => artist.name}
+          className="w-40 md:w-56"
+          renderInput={(params) => <TextField {...params} variant="standard" label="Artistit" />}
+        />
+        <Autocomplete
+          id="Months"
+          noOptionsText='Ei löytynyt'
+          options={months}
+          disableClearable={true}
+          className="w-44 md:w-60"
+          renderInput={(params) => <TextField {...params} variant="standard" label="Kuukaudet" />}
+        />
 
-      <Autocomplete
-        id="Months"
-        noOptionsText='Ei löytynyt'
-        options={months}
-        disableClearable={true}
-        sx={{ width: 250 }}
-        renderInput={(params) => <TextField {...params} variant="standard" label="Kuukaudet" />}
-      />
-
-      <Autocomplete
-        id="Genres"
-        noOptionsText='Ei löytynyt'
-        options={genres ?? []}
-        sx={{ width: 250 }}
-        limitTags={3}
-        renderInput={(params) => <TextField {...params} variant="standard" label="Genret" />}
-      />
-
+        <Autocomplete
+          id="Genres"
+          noOptionsText='Ei löytynyt'
+          options={genres ?? []}
+          className="w-40 md:w-60"
+          limitTags={3}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Genret" />}
+        />
+      </ThemeProvider>
     </div>
   )
 }

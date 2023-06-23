@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import FestivalInfoComponent from './FestivalInfoComponent';
-import MapImage from "../assets/images/MapFinland.svg";
+import MapImage from "../../assets/images/MapFinland.svg";
 
 const locations = [
     { city: "Oulu", value: { right: "265px", top: "325px" } },
@@ -23,10 +23,11 @@ const LocationButton = () => {
     };
 
     return (
-        <span className="flex group-hover:blur-sm">
-            <MapImage width="500"
+        <div className="flex shrink-0">
+            <MapImage
             strokeWidth="1.5"
-            className="stroke-black dark:stroke-white fill-none" />
+            className="stroke-black dark:stroke-white fill-none w-screen md:w-full"
+             />
             {locations.map((location) => {
                 const locationStyle = getLocationStyle(location.city);
                 const isExpanded = expandedLocation === location.city;
@@ -37,9 +38,9 @@ const LocationButton = () => {
                         <button
                             onClick={() => toggleExpansion(location.city)}
                             style={locationStyle}
-                            className="relative w-7 h-7 bg-red rounded-full shadow-md flex items-center group transition-all justify-center hover:scale-125 z-10"
+                            className="relative w-7 h-7 bg-red-500 rounded-full shadow-md flex items-center group transition-all justify-center hover:scale-125"
                         >
-                            <span className="relative w-5 h-5 bg-red rounded-full flex items-center hover:animate-ping transition-all justify-center hover:scale-125"></span>
+                            <span className="relative w-5 h-5 bg-red-500 rounded-full flex items-center hover:animate-ping transition-all justify-center hover:scale-125"></span>
                         </button>
                         <div className={`${isExpanded ? 'block' : 'hidden'}`}>
                             <FestivalInfoComponent city={location.city} expansionState={isExpanded} />
@@ -47,7 +48,7 @@ const LocationButton = () => {
                     </span>
                 );
             })}
-        </span>
+        </div>
     );
 };
 

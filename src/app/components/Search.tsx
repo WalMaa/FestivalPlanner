@@ -1,4 +1,3 @@
-"use client"
 import Cross from '../assets/images/Cross.svg';
 import SearchIcon from '../assets/images/SearchIcon.svg'
 import { useRef, useState } from "react";
@@ -29,7 +28,7 @@ const Search = () => {
     }
 
     return (
-        <div className=' mb-24 relative md:right-0 right-16 justify-center align-middle flex self-end m-10 delay-150 hover:scale-110 transition-transform duration-300'>
+        <div className=' mb-24 -top-10 relative md:right-0 right-48 justify-center align-middle flex self-end m-10 delay-150 hover:scale-110 transition-transform duration-300'>
                 {/*Search Text Box */}
             <label>
                 <input

@@ -10,7 +10,7 @@ const UpcomingFestivalsBar = () => {
 
 
     return (
-        <div className='flex md:justify-end flex-col z-20 '>
+        <div className='flex md:justify-end self-end h-14 flex-1 flex-col z-20 '>
             <div className={`flex transition-all w-80 duration-300 flex-col-reverse p-2 bg-gradient-to-r from-orange-800 via-30% via-orange-700 to-orange-800 m-10
                   rounded-xl shadow-md ${isExpanded ? 'h-96' : 'h-14'}`}>
                 <div className='flex my-1 items-center'>

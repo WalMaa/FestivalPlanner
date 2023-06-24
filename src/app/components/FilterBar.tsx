@@ -40,7 +40,7 @@ const FilterBar = () => {
   });
 
   return (
-    <div className='flex justify-evenly p-4 mt-20'>
+    <div className='flex justify-evenly p-3 mt-4'>
       <ThemeProvider theme={theme}>
         <Autocomplete
           id="Artists-Grouped"
@@ -48,7 +48,7 @@ const FilterBar = () => {
           options={artists?.sort((a: { firstLetter: string; }, b: { firstLetter: string; }) => -b.firstLetter.localeCompare(a.firstLetter)) ?? []}
           groupBy={(option: { name: string }) => option.name.charAt(0)}
           getOptionLabel={(artist: { name: string }) => artist.name}
-          className="w-40 md:w-56"
+          className=" w-28 md:w-56"
           renderInput={(params) => <TextField {...params} variant="standard" label="Artistit" />}
         />
         <Autocomplete
@@ -56,7 +56,7 @@ const FilterBar = () => {
           noOptionsText='Ei löytynyt'
           options={months}
           disableClearable={true}
-          className="w-44 md:w-60"
+          className=" w-28 md:w-60"
           renderInput={(params) => <TextField {...params} variant="standard" label="Kuukaudet" />}
         />
 
@@ -64,7 +64,7 @@ const FilterBar = () => {
           id="Genres"
           noOptionsText='Ei löytynyt'
           options={genres ?? []}
-          className="w-40 md:w-60"
+          className="w-28 md:w-60"
           limitTags={3}
           renderInput={(params) => <TextField {...params} variant="standard" label="Genret" />}
         />

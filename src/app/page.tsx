@@ -36,7 +36,7 @@ export default function Home() {
   return (
     <FestivalDataContext.Provider value={festivalData}>
       <ArtistsDataContext.Provider value={artistsData}>
-        <div className=" flex flex-1 flex-col bg-white h-screen">
+        <div className=" flex flex-1 flex-col bg-white overflow-x-clip h-screen">
 
             <Header />
             <div className=' mt-6 flex items-center align-middle justify-center'>
@@ -50,7 +50,11 @@ export default function Home() {
               <FilterBar />
 
               <div className='md:flex flex-1 justify-center'>
-                <div className='flex'>
+                  <div className=' w-0 sm:flex sm:flex-1'>
+
+                  </div>
+                <div className='flex flex-1'>
+
 
                 {/* Map */}
                   <MapElement />

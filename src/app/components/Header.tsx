@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="relative z-10">
 
-      <header className={`absolute top-0 left-0 right-0 flex flex-col md:h-20 md:flex-row align-middle transition-width duration-500 md:bg-gradient-to-r from-orange-800 via-orange-700 h-screen to-orange-800  px-4 ${isExpanded ? 'w-4/6 md:w-full bg-orange-800' : 'w-20 rounded-br-lg'}`}>
+      <header className={`absolute top-0 left-0 right-0 flex flex-col md:h-20 md:flex-row align-middle transition-width  duration-500 md:bg-gradient-to-r from-orange-800 via-orange-700 h-screen md:shadow-sm md:shadow-orange-800 to-orange-800  px-4 ${isExpanded ? 'w-3/4 md:w-full bg-orange-800 shadow-orange-800' : 'w-20 rounded-br-lg'}`}>
         <button className={` h-20 items-center justify-center`} onClick={() => setIsExpanded(!isExpanded)}>
           {isExpanded ?
             <svg xmlns="http://www.w3.org/2000/svg" aria-label="Close Menu" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" hover:stroke-white w-10 h-10 hover:-translate-x-1 transition-all duration-300 hover:scale-110">

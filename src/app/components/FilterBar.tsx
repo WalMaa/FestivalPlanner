@@ -4,7 +4,7 @@ import { ArtistsDataContext, FestivalDataContext } from '../page';
 import TextField from "@mui/material/TextField";
 import { useContext } from "react";
 import { getGenres } from "../api/spotify";
-import { parseSpotifyId } from "./Map/ArtistList";
+import { parseSpotifyId } from "../utilityFunctions";
 
 const FilterBar = () => {
 
@@ -40,7 +40,7 @@ const FilterBar = () => {
   });
 
   return (
-    <div className='flex justify-evenly p-3 mt-4'>
+    <div className='flex justify-evenly p-3 mt-20'>
       <ThemeProvider theme={theme}>
         <Autocomplete
           id="Artists-Grouped"

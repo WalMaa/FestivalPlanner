@@ -2,18 +2,12 @@ import { useContext, useState, useEffect } from "react";
 import { FestivalDataContext } from "../../page";
 import React from "react";
 import ArtistList from "./ArtistList";
-import setIsPlaying from "./ArtistList"
 import { Festival } from '../../types'
+import { convertDate, festivalCountdown } from "@/app/utilityFunctions";
 
-const convertDate = (timestamp: string) => {
-    const date = new Date(timestamp);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const formattedDate = `${day}/${month}`;
-    return formattedDate;
-};
 
-const FestivalInfoComponent = ({ city, setExpandedLocation }: { city: string, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>>}) => {
+
+const FestivalInfoComponent = ({ city, setExpandedLocation }: { city: string, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>> }) => {
     const festivalData = useContext(FestivalDataContext);
     const festivalsAtLocation: Festival[] = festivalData?.filter((festival) => festival.location === city) ?? [];
     const initialFestival = festivalsAtLocation.length > 0 ? festivalsAtLocation[0].id : null;
@@ -27,25 +21,43 @@ const FestivalInfoComponent = ({ city, setExpandedLocation }: { city: string, se
         // this ensures that it happens only from null -> non-null i.e. not when user input happens
     }, [festivalsAtLocation && festivalsAtLocation.length]);
 
-    const closeLocation= () => {
+    const closeLocation = () => {
         setExpandedLocation(null);
     }
 
 
-
+    // No festivals at location
     if (festivalsAtLocation.length === 0) {
-        return <div>No festivals available for {city}</div>;
+        return <div className="absolute top-1/3 right-1/2 w-64 bg-white shadow-md rounded-lg p-2 z-20 ">
+            <span className="flex justify-end">
+                <button onClick={() => closeLocation()} aria-label='Close festival menu'>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" w-8 h-8 hover:scale-110 transition-transform duration-300 hover:stroke-2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </span>
+            <h2 className="text-xl">No festivals available for {city}</h2>
+        </div>;
+
     }
 
     return (
-        <div className="absolute top-1/3 right-1/2 bg-white shadow-md rounded-lg p-2 z-20 ">
+        <div className="absolute top-1/3 right-1/2 bg-teal-100 shadow-md rounded-lg p-2 z-20 ">
             <div className="flex flex-col">
-                <div className="flex">
+                <div className="flex justify-center items-center">
+                <h3 className="text-2xl font-medium text-center mb-2">{city}</h3>
+                <button onClick={() => closeLocation()} aria-label='Close festival menu' className="absolute right-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" w-8 h-8 hover:scale-110 transition-transform duration-300 hover:stroke-2">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+                </div>
+                <div className="flex justify-evenly">
                     {festivalsAtLocation.map((festival: { id: string; name: string; }) => (
-                        <div className="flex-1 justify-center" key={festival.id}>
+                        <div key={festival.id}>
                             <button
-                                className={`p-2 rounded-lg hover:scale-110 transition-transform shadow-sm  duration-150 ${selectedFestival === festival.id ? 'bg-gray border-2 border-red-600 scale-105' : 'bg-gray'
-                                    }`}
+                                className={`p-2 rounded-lg hover:scale-110 transition-transform shadow-sm  duration-150
+                                 ${selectedFestival === festival.id ? 'bg-gray border-2 border-red-600 scale-105' : 'bg-gray'}`}
                                 onClick={() => setSelectedFestival(festival.id)}
                             >
                                 <h2>{festival.name}</h2>
@@ -53,13 +65,6 @@ const FestivalInfoComponent = ({ city, setExpandedLocation }: { city: string, se
                         </div>
                     ))}
                     {/* Close Button */}
-                    <span className="relative top-1 right-7 h-0 w-0">
-                        <button onClick={() => closeLocation()} aria-label='Close festival menu'>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className=" w-8 h-8 hover:scale-110 transition-transform duration-300 hover:stroke-2">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </span>
                 </div>
                 <div>
                     {festivalsAtLocation.map((festival: Festival) => (
@@ -75,6 +80,7 @@ const FestivalInfoComponent = ({ city, setExpandedLocation }: { city: string, se
                             </a>
 
                             <h3 className="text-lg text-left">{convertDate(festival.startDate)} - {convertDate(festival.endDate)}</h3>
+                            <h3>{festivalCountdown(festival.startDate, festival.endDate)}</h3>
                             <ArtistList artistIds={festival.artists} />
                         </div>
                     ))}

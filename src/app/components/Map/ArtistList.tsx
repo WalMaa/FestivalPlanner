@@ -1,13 +1,11 @@
-import React, { useContext, useState, useEffect, useRef, } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { ArtistsDataContext } from "../../page";
 import { getPreview } from '../../api/spotify';
 import { Artist } from '../../types'
 import ReactAudioPlayer from 'react-audio-player';
+import { parseSpotifyId } from "@/app/utilityFunctions";
 
-export const parseSpotifyId = (spotifyUrl: string) => {
-    const artistId = spotifyUrl.split('/artist/')[1]?.split('?')[0];
-    return artistId;
-};
+
 
 
 
@@ -70,7 +68,7 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
                 if (!preview) {
                     // Preview data is not available yet
                     return (
-                        <div className="flex flex-1 h-20 shadow-sm shadow-white p-2 bg-white mr-1 my-1 justify-start items-center rounded-lg  animate-pulse">
+                        <div key={artist.id} className="flex flex-1 h-20 shadow-sm shadow-white p-2 bg-white mr-1 my-1 justify-start items-center rounded-lg  animate-pulse">
                             <div className="lds-ring mt-4"><div></div><div></div><div></div><div></div></div>
                             <h2 className="text-xl">Loading...</h2>
                             </div>
@@ -111,7 +109,7 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
                             {/* Audio Player */}
                             {preview.playbackUrl &&
                                 <ReactAudioPlayer
-                                    src={preview.playbackUrl || undefined}
+                                    src={preview.playbackUrl}
                                     autoPlay={false}
                                     controls={false}
                                     className="rounded-lg"
@@ -145,7 +143,6 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
                                 </a>
     
                             </div>
-    
                         </li>
                     );
             })}
@@ -154,3 +151,8 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
 }
 
 export default ArtistList;
+
+    function undefined({}) {
+      return (<>flex h-20 shadow-sm shadow-white p-2 bg-white mr-1 my-1 justify-between rounded-lg</>);
+    }
+  

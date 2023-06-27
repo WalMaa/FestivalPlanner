@@ -17,7 +17,7 @@ module.exports = {
           current: 'currentColor',
           black: '#454958',
           white: '#f2f2f2',
-          gray: '#e5e5e5',
+          gray: '#dddada',
           orange: {
             100: '#fee2b2',
             200: '#fdcf7f',
@@ -56,7 +56,6 @@ module.exports = {
     
   },
   plugins: [
-    require("daisyui"),
     require('tailwind-scrollbar-hide'),
     require('tailwind-scrollbar'),
   ],

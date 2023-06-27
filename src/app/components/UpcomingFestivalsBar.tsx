@@ -1,8 +1,10 @@
 import { useContext, useState } from 'react';
 import { FestivalDataContext } from '../page';
-import Fire from '../assets/images/Fire.svg'
-import HourGlass from '../assets/images/HourGlass.svg'
+import Fire from '@/../public/images/Fire.svg'
 import { Festival } from '../types';
+import { festivalCountdown } from '../utilityFunctions';
+
+
 
 const UpcomingFestivalsBar = () => {
     const festivalData = useContext(FestivalDataContext);
@@ -45,33 +47,29 @@ const UpcomingFestivalsBar = () => {
                 </div>
                 <ol className='flex flex-1 flex-col overflow-y-auto scroll-smooth scrollbar-hide'>
                     {festivalData?.map((festival: Festival) => {
-                        let startDate = new Date(festival.startDate).getTime();
-                        let currentDate = Date.now();
-                        let timeDifference;
-                        let Icon;
-
-                        // if the festival has already started. Use the endDate instead and the Icon is changed accordingly.
-                        if (currentDate > startDate) {
-                            let endDate = new Date(festival.endDate).getTime();
-                            timeDifference = endDate - currentDate;
-                            Icon = Fire
-                        } else {
-                            Icon = HourGlass
-                            timeDifference = startDate - currentDate;
+                        const daysRemaining = festivalCountdown(festival.startDate, festival.endDate);
+                        let hasStarted = false;
+                        if (new Date(festival.startDate).getTime() < Date.now()) {
+                            hasStarted = true;
                         }
-                        const daysRemaining = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
                         return (
-
-                            <li className='flex h-16 bg-white rounded-md shadow-md border-b-1 my-1 px-2 py-1'
+                            <li className={`flex h-16 rounded-md shadow-md border-b-1 my-1 px-2 py-1 ${daysRemaining < 0 ? 'bg-gray' : 'bg-white'}`}
                                 key={festival.id}>
                                 <div className='flex flex-col w-46 overflow-hidden'>
                                     <span className='text-lg truncate text-left'>{festival.name}</span>
                                     <span className='text-slate-400 text-left'>{festival.location} </span>
                                 </div>
-                                <div className='flex flex-1 justify-end mx-2'>
-                                    <Icon width="38" />
-                                    <span className='text-xl text-right w-10 self-center' >{daysRemaining}</span>
+                                <div className='flex flex-1 items-center justify-end mx-2'>
+                                    {hasStarted ? 
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="red" className="w-10 h-10">
+                                        <path d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
+                                        <path d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
+                                      </svg>
+                                        :
+                                        <svg className='h-10 w-10' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6,2H18V8H18V8L14,12L18,16V16H18V22H6V16H6V16L10,12L6,8V8H6V2M16,16.5L12,12.5L8,16.5V20H16V16.5M12,11.5L16,7.5V4H8V7.5L12,11.5M10,6H14V6.75L12,8.75L10,6.75V6Z" /></svg>
+                                    }
+                                    <span className='text-xl text-right w-8 self-center' >{daysRemaining}</span>
                                 </div>
 
                             </li>)

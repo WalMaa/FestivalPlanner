@@ -39,7 +39,6 @@ const getAccessToken = async () => {
 };
 
 const getGenres = async (artistId: string) => {
-
   try {
     const token = await getAccessToken();
     const response = await axios.get(`https://api.spotify.com/v1/artists/${artistId}`, {

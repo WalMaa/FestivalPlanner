@@ -36,31 +36,25 @@ export default function Home() {
   return (
     <FestivalDataContext.Provider value={festivalData}>
       <ArtistsDataContext.Provider value={artistsData}>
-        <div className=" flex flex-1 flex-col bg-white overflow-x-clip h-screen">
+        <div className="flex flex-1 flex-col ">
 
             <Header />
-            <div className=' mt-6 flex items-center align-middle justify-center'>
-          <h1 className="text-3xl font-bold text-black text-center line-clamp-1">
-            Mis Festarit?
-          </h1>
-            </div>
+
             {/* Middle Content */}
 
               {/* Filter Bar */}
               <FilterBar />
 
               <div className='md:flex flex-1 justify-center'>
-                  <div className=' w-0 sm:flex sm:flex-1'>
+                  <div className='sm:flex sm:flex-1'>
 
                   </div>
-                <div className='flex flex-1'>
 
 
                 {/* Map */}
                   <MapElement />
                 {/* Search */}
                 <Search />
-                </div>
 
 
                 {/* Right Side */}

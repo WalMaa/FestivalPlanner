@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import FestivalInfoComponent from './FestivalInfoComponent';
 import MapImage from '@/../public/images/MapFinland.svg'
+import React from 'react';
 
 const locations = [
     { city: "Rovaniemi", value: { right: "250px", top: "265px" } },
@@ -18,15 +19,15 @@ const getLocationStyle = (location: string) => {
 
 
 const LocationButton = () => {
-    
+
     const [expandedLocation, setExpandedLocation] = useState<null | string>(null);
-    
+
     const toggleExpansion = (location: string) => {
         const newExpandedLocation = expandedLocation === location ? null : location;
         setExpandedLocation(newExpandedLocation);
     };
-    
 
+    const MemoizedFestivalInfoComponent = React.memo(FestivalInfoComponent);
 
     return (
         <div className="flex justify-center flex-1 shrink-0">
@@ -51,14 +52,19 @@ const LocationButton = () => {
                         >
                             <span className="z-0 relative w-5 h-5 bg-red-500 rounded-full flex items-center hover:animate-ping transition-all justify-center hover:scale-125"></span>
                         </button>
-                        <div className={`${isExpanded ? 'block' : 'hidden'}`}>
-                            <FestivalInfoComponent city={location.city} setExpandedLocation={setExpandedLocation} />
-                        </div>
+                        {
+                            isExpanded
+                                ? <div className={` transition-opacity ${isExpanded ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+                                    <MemoizedFestivalInfoComponent city={location.city} setExpandedLocation={setExpandedLocation} />
+                                </div>
+                                : undefined
+                        }
                     </span>
                 );
             })}
         </div>
     );
 };
+
 
 export default LocationButton;

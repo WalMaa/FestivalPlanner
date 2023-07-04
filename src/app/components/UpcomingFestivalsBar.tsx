@@ -1,6 +1,5 @@
 import { useContext, useState } from 'react';
 import { FestivalDataContext } from '../page';
-import Fire from '@/../public/images/Fire.svg'
 import { Festival } from '../types';
 import { festivalCountdown } from '../utilityFunctions';
 

@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="relative z-10">
 
-      <header className={`absolute top-0 left-0 right-0 flex flex-col md:h-20 md:flex-row align-middle transition-width md:mx-12  duration-500 from-orange-800 via-orange-700 h-screen to-orange-800  px-3 ${isExpanded ? 'w-3/4 md:w-full md:bg-transparent bg-orange-800 shadow-orange-800' : 'w-20 md:w-full rounded-br-lg'}`}>
+      <header className={`absolute top-0 left-0 right-0 flex flex-col md:h-20 md:flex-row align-middle transition-width duration-500 from-orange-800 via-orange-700 h-screen to-orange-800  px-3 ${isExpanded ? 'w-3/4 md:w-fit md:bg-transparent bg-orange-800 shadow-orange-800' : 'w-20 md:w-full rounded-br-lg'}`}>
         <div className="flex items-center">
           <button aria-label="toggle sidebar" className={` h-20 items-center justify-center mr-2`} onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ?

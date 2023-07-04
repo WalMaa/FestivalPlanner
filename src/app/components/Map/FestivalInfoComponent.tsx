@@ -1,10 +1,9 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, Suspense } from "react";
 import { FestivalDataContext } from "../../page";
 import React from "react";
-import ArtistList from "./ArtistList";
 import { Festival } from '../../types'
 import { convertDate, festivalCountdown } from "@/app/utilityFunctions";
-
+import ArtistList from "./ArtistList";
 
 
 const FestivalInfoComponent = ({ city, setExpandedLocation }: { city: string, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>> }) => {

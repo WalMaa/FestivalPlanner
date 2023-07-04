@@ -1,11 +1,16 @@
+import { ArtistsDataContext, FestivalDataContext } from '../page';
+import { Artist, Festival } from '../types';
 import Cross from '/public/images/Cross.svg';
 import SearchIcon from '/public/images/SearchIcon.svg'
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 
 const Search = () => {
 
     const [isSearchActive, setSearchActive] = useState(false);
     const searchRef = useRef<HTMLInputElement>(null);
+    const festivals: null | Festival [] = useContext(FestivalDataContext);
+    const artists: null | Artist [] = useContext(ArtistsDataContext);
+
 
 
     const icon = isSearchActive ? (

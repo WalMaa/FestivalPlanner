@@ -5,10 +5,6 @@ import { Artist } from '../../types'
 import ReactAudioPlayer from 'react-audio-player';
 import { parseSpotifyId } from "@/app/utilityFunctions";
 
-
-
-
-
 const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
     const artistsData = useContext(ArtistsDataContext);
     const [artistPreviews, setArtistPreviews] = useState<{ [key: string]: { trackName: string | null; playbackUrl: string | null; imageUrl: string | null } }>({});

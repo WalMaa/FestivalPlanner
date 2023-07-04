@@ -2,16 +2,18 @@ import Autocomplete from "@mui/material/Autocomplete"
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { ArtistsDataContext, FestivalDataContext } from '../page';
 import TextField from "@mui/material/TextField";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { getGenres } from "../api/spotify";
 import { parseSpotifyId } from "../utilityFunctions";
+import React from "react";
 
 const FilterBar = () => {
-
+  
   const artistsData = useContext(ArtistsDataContext);
   const festivalData = useContext(FestivalDataContext);
   const months = ['Kaikki Kuukaudet', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu']
-
+  const genres: string[] = [];
+  
   const artists = artistsData?.map((artist: { name: string; spotifyId: string; }) => {
     const firstLetter: string = artist.name[0].toUpperCase();
     return {
@@ -19,13 +21,11 @@ const FilterBar = () => {
       ...artist,
     };
   });
-
-  const genres: string[] = [];
-
+  
   artistsData?.forEach((artist: { id: string; spotifyId: string }) => {
     getGenres(parseSpotifyId(artist.spotifyId))
       .then((artistsGenres) => {
-        if (!artistsGenres.some((genre: string) => genres.includes(genre))) {
+        if (artistsGenres && !artistsGenres.some((genre: string) => genres.includes(genre))) {
           genres.push(...artistsGenres);
         }
       });

@@ -46,11 +46,7 @@ export default function Home() {
               <FilterBar />
 
               <div className='md:flex flex-1 justify-center'>
-                  <div className='sm:flex sm:flex-1'>
-
-                  </div>
-
-
+                  <div className='sm:flex sm:flex-1'></div>
                 {/* Map */}
                   <MapElement />
                 {/* Search */}
@@ -62,6 +58,7 @@ export default function Home() {
               </div>
 
         </div>
+        <div id='portal'></div>
 
       </ArtistsDataContext.Provider>
     </FestivalDataContext.Provider>

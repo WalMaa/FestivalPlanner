@@ -20,9 +20,12 @@ const Header = () => {
 
             }
           </button>
-          <h1 className={`text-3xl text-center font-semibold line-clamp-1 ${!isExpanded && 'text-transparent md:text-current'}`}>
-            Mis Festarit?
-          </h1>
+          <a href="localhost:3000/">
+            <h1 className={`text-3xl text-center font-semibold line-clamp-1 ${!isExpanded && 'text-transparent md:text-current'}`}>
+              Mis Festarit?
+            </h1>
+          </a>
+
         </div>
 
         <>

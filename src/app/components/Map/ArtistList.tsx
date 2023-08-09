@@ -4,6 +4,7 @@ import { getPreview } from '../../api/spotify';
 import { Artist } from '../../types'
 import ReactAudioPlayer from 'react-audio-player';
 import { parseSpotifyId } from "@/app/utilityFunctions";
+import Image from "next/image";
 
 const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
     const artistsData = useContext(ArtistsDataContext);
@@ -74,7 +75,14 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
                         <li key={artist.id} className="flex h-20 shadow-sm shadow-white p-2 bg-white mr-1 my-1 justify-between rounded-lg">
                             <span className="flex">
                                 {/* Image */}
-                                {preview.imageUrl && <img loading="lazy" src={preview.imageUrl} width={'60px'} className="rounded-lg" alt={artist.name}></img>}
+                                <Image
+                                    className="rounded-lg"
+                                    src={preview.imageUrl ?? '/images/placeholder.png'}
+                                    alt="Artist Image"
+                                    loading="lazy"
+                                    width={60}
+                                    height={60}
+                                />
     
                                 {/* Text info */}
                                 <div className="flex flex-col justify-center mx-4">
@@ -82,7 +90,7 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
                                     {preview.playbackUrl &&
     
                                         <span className="flex w-48 overflow-hidden align-middle py-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-6 mr-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={`w-5 h-6 mb-1 mr-1 ${artist.id === isPlaying && 'animate-bounce'} `}>
                                                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
                                             </svg>
                                             <div className="w-40 wrapper">
@@ -145,10 +153,4 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
         </div>
     );
 }
-
 export default ArtistList;
-
-    function undefined({}) {
-      return (<>flex h-20 shadow-sm shadow-white p-2 bg-white mr-1 my-1 justify-between rounded-lg</>);
-    }
-  

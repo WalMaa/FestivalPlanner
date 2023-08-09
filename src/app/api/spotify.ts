@@ -60,7 +60,6 @@ const getGenres = async (artistId: string) => {
 };
 
 const getPreview = async (artistId: string) => {
-  console.log("getPreview")
   try {
     const token = await getAccessToken(); // Awaits the token retrieval
     const response = await fetch(`https://api.spotify.com/v1/artists/${artistId}/top-tracks?country=FI`, {

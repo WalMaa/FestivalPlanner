@@ -27,13 +27,17 @@ const LocationButton = () => {
         setExpandedLocation(newExpandedLocation);
     };
 
+    const selectFestival = (festival: string) => {
+        setExpandedLocation(festival);
+    };
+
     const MemoizedFestivalInfoComponent = React.memo(FestivalInfoComponent);
 
     return (
-        <div className="flex justify-center flex-1 shrink-0">
+        <div className="flex justify-center flex-1">
             <MapImage
                 strokeWidth="1.5"
-                className="stroke-black dark:stroke-white fill-none "
+                className="stroke-black fill-none "
                 width="500"
             />
             {locations.map((location) => {
@@ -42,7 +46,7 @@ const LocationButton = () => {
 
                 return (
                     // Location buttons
-                    <span key={location.city} className=' w-0 h-0'>
+                    <span key={location.city} className='w-0 h-0'>
                         <button
                             onClick={() => toggleExpansion(location.city)}
                             style={locationStyle}
@@ -54,7 +58,7 @@ const LocationButton = () => {
                         </button>
                         {
                             isExpanded
-                                ? <div className={` transition-opacity ${isExpanded ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+                                ? <div className={`duration-500 ${isExpanded ? 'visible opacity-100' : 'invisible opacity-0'}`}>
                                     <MemoizedFestivalInfoComponent city={location.city} setExpandedLocation={setExpandedLocation} />
                                 </div>
                                 : undefined

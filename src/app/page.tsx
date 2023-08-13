@@ -15,16 +15,22 @@ const ArtistsDataContext = createContext< Artist [] | null>(null);
 export default function Home() {
 
 
-  const [festivalData, setFestivalData] = useState<any>([]);
-  const [artistsData, setArtistsData] = useState<any>([]);
+  const [festivalData, setFestivalData] = useState<Festival[] | null>(null);
+  const [artistsData, setArtistsData] = useState<Artist[] | null>(null);
+  
 
   useEffect(() => {
     async function fetchData() {
       try {
         const dataFestival = await getFestivals();
-        setFestivalData(dataFestival);
+        if (dataFestival) {
+          console.log(dataFestival)
+          setFestivalData(dataFestival);
+        }
         const dataArtists = await getArtists();
-        setArtistsData(dataArtists);
+        if (dataArtists) {
+          setArtistsData(dataArtists);
+        }
       } catch (error) {
         console.error('Error fetching data:', error);
       }

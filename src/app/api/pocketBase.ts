@@ -24,6 +24,4 @@ export async function getArtists() {
     } catch (error) {
         console.error('Error fetching artists:', error);
     }
-    
 }
-  

@@ -57,7 +57,7 @@ const LocationButton = () => {
                         </button>
                         {
                             isExpanded
-                                && <div className={`duration-500 ${isExpanded ? 'visible opacity-100' : 'invisible opacity-0'}`}>
+                                && <div className={`duration-500 transition-[opacity] ${isExpanded ? 'visible opacity-100' : 'invisible opacity-0'}`}>
                                     <MemoizedFestivalInfoComponent city={location.city} festival={selectedFestival} setExpandedLocation={setExpandedLocation}/>
                                 </div>
                         }

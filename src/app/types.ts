@@ -5,7 +5,7 @@ export interface Festival {
     startDate: string;
     endDate: string;
     url: string;
-    artists: string [];
+    artists: string [] | null;
 }
 
 export interface Artist {

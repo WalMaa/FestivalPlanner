@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState, useEffect, useMemo } from "react";
 import { FestivalDataContext } from "../../page";
 import React from "react";
 import { Festival } from '../../types'
@@ -10,7 +10,9 @@ import FestivalTime from "../Generic/FestivalTime";
 
 const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: string, festival?: string | null, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>> }) => {
     const festivalData = useContext(FestivalDataContext);
-    const festivalsAtLocation: Festival[] = festivalData?.filter((festival) => festival.location === city) ?? [];
+    const festivalsAtLocation = useMemo(() => {
+        return festivalData?.filter((festival) => festival.location === city) ?? [];
+      }, [festivalData, city]);
     const initialFestival = festivalsAtLocation.length > 0 ? festivalsAtLocation[0].id : null;
     const [selectedFestival, setSelectedFestival] = useState(initialFestival);
     const modalRef = React.useRef<HTMLDivElement>(null);
@@ -26,7 +28,7 @@ const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: 
             setSelectedFestival(festival);
         };
         // this ensures that it happens only from null -> non-null i.e. not when user input happens
-    }, [festivalsAtLocation && festivalsAtLocation.length, festival]);
+    }, [festivalsAtLocation, festival]);
 
     const closeLocation = () => {
         setExpandedLocation(null);
@@ -45,7 +47,7 @@ const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: 
         return () => {
             document.removeEventListener('mousedown', handleOutsideClick);
         };
-    }, []);
+    });
 
     // No festivals at location
     if (festivalsAtLocation.length === 0) {

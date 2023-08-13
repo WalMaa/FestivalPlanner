@@ -1,10 +1,10 @@
 import PocketBase from 'pocketbase';
-
-const pb = new PocketBase(process.env.PB_URL);
+import { Festival, Artist } from '../types';
+const pb = new PocketBase('https://festivalplanner.hop.sh');
 
 export async function getFestivals() {
     try {
-        const festivalData = await pb.collection('festivals').getFullList({
+        const festivalData: Festival [] | null = await pb.collection('festivals').getFullList({
             sort: '-startDate',
         });
         return festivalData;
@@ -12,12 +12,12 @@ export async function getFestivals() {
     } catch (error) {
       console.error('Error fetching festivals:', error);
     }
-  }
+}
 
 export async function getArtists() {
     try {
         
-        const artistsData = await pb.collection('artists').getFullList({
+        const artistsData: Artist [] | null = await pb.collection('artists').getFullList({
             sort: '-name',
         });
         return artistsData;

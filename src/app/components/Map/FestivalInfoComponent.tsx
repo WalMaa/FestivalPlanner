@@ -2,7 +2,7 @@ import { useContext, useState, useEffect } from "react";
 import { FestivalDataContext } from "../../page";
 import React from "react";
 import { Festival } from '../../types'
-import { convertDate, festivalCountdown } from "@/app/utilityFunctions";
+import { convertDate} from "@/app/utilityFunctions";
 import ArtistList from "./ArtistList";
 import ReactDom from "react-dom";
 import FestivalTime from "../Generic/FestivalTime";
@@ -26,7 +26,7 @@ const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: 
             setSelectedFestival(festival);
         };
         // this ensures that it happens only from null -> non-null i.e. not when user input happens
-    }, [festivalsAtLocation && festivalsAtLocation.length]);
+    }, [festivalsAtLocation && festivalsAtLocation.length, festival]);
 
     const closeLocation = () => {
         setExpandedLocation(null);

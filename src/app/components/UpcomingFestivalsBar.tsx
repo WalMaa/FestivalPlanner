@@ -46,10 +46,6 @@ const UpcomingFestivalsBar = () => {
                 <ol className='flex flex-1 flex-col overflow-y-auto scroll-smooth scrollbar-hide'>
                     {festivalData?.map((festival: Festival) => {
                         const daysRemaining = festivalCountdown(festival.startDate, festival.endDate);
-                        let hasStarted = false;
-                        if (new Date(festival.startDate).getTime() < Date.now()) {
-                            hasStarted = true;
-                        }
 
                         return (
                             <li className={`flex h-16 rounded-md shadow-md border-b-1 my-1 px-2 py-1 ${daysRemaining < 0 ? 'bg-gray' : 'bg-white'}`}
@@ -58,19 +54,12 @@ const UpcomingFestivalsBar = () => {
                             <button className='flex flex-1' onClick={() => {window.open(festival.url, '_blank')}}>
 
                                 <div className='flex flex-col w-46 overflow-hidden'>
-                                    <span className='text-lg truncate text-left'>{festival.name}</span>
-                                    <span className='text-slate-400 text-left'>{festival.location} </span>
+                                    <h4 className='text-lg truncate text-left'>{festival.name}</h4>
+                                    <h4 className='text-slate-400 text-left'>{festival.location} </h4>
                                 </div>
                                 <div className='flex flex-1 items-center justify-end gap-2 mr-1'>
                                     <FestivalTime className='' startDate={festival.startDate} endDate={festival.endDate} />
-                                    {hasStarted ?
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="red" className="w-8 h-8">
-                                            <path d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
-                                            <path d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
-                                        </svg>
-                                        :
-                                        <svg className='h-8 w-8' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6,2H18V8H18V8L14,12L18,16V16H18V22H6V16H6V16L10,12L6,8V8H6V2M16,16.5L12,12.5L8,16.5V20H16V16.5M12,11.5L16,7.5V4H8V7.5L12,11.5M10,6H14V6.75L12,8.75L10,6.75V6Z" /></svg>
-                                    }
+
                                 </div>
                             </button>
                             </li>

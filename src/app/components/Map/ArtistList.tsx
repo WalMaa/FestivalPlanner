@@ -89,25 +89,25 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
                             />
 
                             {/* Text info */}
-                            <div className="flex w-40 flex-col justify-center mx-2 sm:mx-4">
+                            <div className="flex w-44 flex-col justify-center mx-2 sm:ml-3">
                                 <h3 className={`text-left ${preview.playbackUrl ? ' text-base sm:text-xl' : 'text-2xl'} `}>{artist.name}</h3>
                                 {preview.playbackUrl &&
 
-                                    <span className="flex overflow-hidden max-w-40 align-middle py-1">
+                                    <div className="flex overflow-hidden max-w-40 align-middle py-1">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className={`w-5 h-6 mb-1 mr-1 ${artist.id === isPlaying && 'animate-bounce'} `}>
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
                                         </svg>
-                                        <div className=" w-24 sm:w-36 wrapper">
+                                        <div className=" w-24 sm:w-44 wrapper">
                                             {/* Determination of the animation based on the charlength of 25 is not elegent since it is indeterministic but it is used to reduce complexity */}
-                                            <div className={`text-left text-sm sm:text-base  whitespace-nowrap  ${preview.trackName && preview.trackName?.length > (window.innerWidth < 640 ? 13 : 25) && 'marquee'}`}>
+                                            <span className={`text-left text-sm sm:text-base  whitespace-nowrap  ${preview.trackName && preview.trackName?.length > (window.innerWidth < 640 ? 14 : 25) && 'marquee'}`}>
                                                 <h4 >{preview.trackName}</h4>
                                                 {/* non breaking space */}
                                                 {"\u00A0".repeat(1)}
                                                 <h4 >{preview.trackName}</h4>
-                                            </div>
+                                            </span>
                                         </div>
 
-                                    </span>
+                                    </div>
                                 }
                             </div>
                         </span>
@@ -126,9 +126,9 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
                                 onEnded={handleAudioEnd}
                             />
                         }
-                        <div className="flex justify-end w-24">
+                        <div className="flex justify-end">
                             {preview.playbackUrl != null &&
-                                <button className="m-1" onClick={() => togglePlay(artist.id)}>
+                                <button className="mr-1" onClick={() => togglePlay(artist.id)}>
                                     {artist.id === isPlaying ?
                                         // Pause
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-11 h-11 hover:scale-110 active:scale-90 transition-transform">

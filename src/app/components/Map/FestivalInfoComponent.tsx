@@ -1,5 +1,5 @@
 import { useContext, useState, useEffect, useMemo } from "react";
-import { FestivalDataContext } from "../../page";
+import { FestivalContext } from "../../page";
 import React from "react";
 import { Festival } from '../../types'
 import { convertDate} from "@/app/utilityFunctions";
@@ -9,7 +9,7 @@ import FestivalTime from "../Generic/FestivalTime";
 
 
 const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: string, festival?: string | null, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>> }) => {
-    const festivalData = useContext(FestivalDataContext);
+    const festivalData = useContext(FestivalContext);
     const festivalsAtLocation = useMemo(() => {
         return festivalData?.filter((festival) => festival.location === city) ?? [];
       }, [festivalData, city]);

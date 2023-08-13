@@ -48,7 +48,7 @@ const getGenres = async (artistId: string) => {
     });
     if (response.status === 200) {
       const responseJSON = await response.json();
-      const { genres } = responseJSON.genres;
+      const genres = responseJSON.genres;
       return genres;
     } else {
       throw new Error('Error retrieving artist genres');

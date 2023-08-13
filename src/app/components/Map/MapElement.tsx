@@ -35,9 +35,10 @@ const LocationButton = () => {
         <div className="flex justify-center flex-1">
             <MapImage
                 strokeWidth="1.5"
-                className="stroke-black fill-none "
+                className="stroke-black fill-none"
                 width="500"
             />
+            
             {locations.map((location) => {
                 const locationStyle = getLocationStyle(location.city);
                 const isExpanded = expandedLocation === location.city;
@@ -50,9 +51,9 @@ const LocationButton = () => {
                             style={locationStyle}
                             aria-roledescription='button'
                             aria-label={location.city}
-                            className="z-0 relative w-7 h-7 bg-red-500 bg-opacity-90 drop-shadow-md hover:skew-x-0 active:scale-90 -skew-x-6 rounded-full flex items-center group transition-all justify-center hover:scale-125"
+                            className="z-0 relative w-7 h-7 bg-red-400 bg-opacity-95 drop-shadow-lg hover:skew-x-0 active:scale-90 -skew-x-[4deg] rounded-full flex items-center group transition-all justify-center hover:scale-125"
                         >
-                          <span className="z-0 relative w-5 h-5 bg-red-500 hover:blur-sm rounded-full flex items-center hover:animate-ping transition-all justify-center hover:scale-125"></span>
+                          <span className="z-0 relative w-6 h-6 bg-red-700 hover:blur-[1px] rounded-full flex items-center hover:skew-x-0 -skew-x-[4deg] hover:animate-ping transition-all justify-center hover:scale-125"></span>
                         </button>
                         {
                             isExpanded

@@ -5,6 +5,7 @@ import { Festival } from '../../types'
 import { convertDate, festivalCountdown } from "@/app/utilityFunctions";
 import ArtistList from "./ArtistList";
 import ReactDom from "react-dom";
+import FestivalTime from "../Generic/FestivalTime";
 
 
 const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: string, festival?: string | null, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>> }) => {
@@ -104,7 +105,7 @@ const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: 
                                         <h3 className="text-lg text-left">{convertDate(festival.startDate)} - {convertDate(festival.endDate)}</h3>
                                         </div>
                                         <div className="flex flex-1 justify-end items-end">
-                                        <h3 className="text-2xl">{festivalCountdown(festival.startDate, festival.endDate)}</h3>
+                                        <FestivalTime className="text-xl" startDate={festival.startDate}  endDate={festival.endDate}/>
                                         </div>
                                     </div>
                                     <ArtistList artistIds={festival.artists} />

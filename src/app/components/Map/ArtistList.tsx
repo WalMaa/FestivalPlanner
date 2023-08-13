@@ -6,7 +6,7 @@ import ReactAudioPlayer from 'react-audio-player';
 import { parseSpotifyId } from "@/app/utilityFunctions";
 import Image from "next/image";
 
-const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
+const ArtistList = ({ artistIds }: { artistIds: string[] | null }) => {
     const artistsData = useContext(ArtistsDataContext);
     const [artistPreviews, setArtistPreviews] = useState<{ [key: string]: { trackName: string | null; playbackUrl: string | null; imageUrl: string | null } }>({});
     const [currentAudioElement, setCurrentAudioElement] = useState<HTMLAudioElement | null>(null);
@@ -55,7 +55,7 @@ const ArtistList = ({ artistIds }: { artistIds: string[] }) => {
 
     return (
         <div className="flex flex-shrink flex-col overflow-auto px-2 mx-1 sm:mx-2 scroll-smooth scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent h-80">
-            {artistsData?.filter((artist: { id: string }) => artistIds.includes(artist.id)).map((artist: Artist) => {
+            {artistsData?.filter((artist: { id: string }) => artistIds?.includes(artist.id)).map((artist: Artist) => {
                 const preview = artistPreviews[artist.id];
                 audioPlayerRefs[artist.id] = React.createRef();
 

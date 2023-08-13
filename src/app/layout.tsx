@@ -1,7 +1,7 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Nunito } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const font = Nunito({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Mis Festarit?',
@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fi">
-      <body className={`${inter.className} bg-white`}>{children}</body>
+      <body className={`${font.className} bg-white`}>{children}</body>
     </html>
   )
 }

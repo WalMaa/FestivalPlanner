@@ -32,9 +32,12 @@ const FilterBar = () => {
   });
 
   const theme = createTheme({
+    typography: {
+      fontFamily: 'Nunito,',
+    },
     palette: {
       primary: {
-        main: '#fd614a', // Replace with your desired accent color
+        main: '#fd614a',
       },
     },
   });
@@ -43,6 +46,7 @@ const FilterBar = () => {
     <div className='flex justify-evenly p-3 mt-20'>
       <ThemeProvider theme={theme}>
         <Autocomplete
+          
           id="Artists-Grouped"
           noOptionsText='Ei löytynyt'
           options={artists?.sort((a: { firstLetter: string; }, b: { firstLetter: string; }) => -b.firstLetter.localeCompare(a.firstLetter)) ?? []}

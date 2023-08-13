@@ -46,7 +46,7 @@ const Search = () => {
                     placeholder={`${isSearchActive ? 'Search' : '' }`}
                     name="search"/>
             </label>
-            <span className={`absolute right-0 flex transition-shadow hover:ring-2 hover:ring-red-500 duration-300  h-14 w-14 rounded-full py-2 pl-9 pr-3 bg-gradient-to-br${!isSearchActive && 'shadow-lg'}`}>
+            <span className={`absolute right-0 flex transition-shadow hover:ring-2 hover:ring-red-500 duration-300  h-14 w-14 rounded-full py-2 pl-9 pr-3 bg-white ${!isSearchActive && 'shadow-lg'}`}>
                 <button onClick={handleSearchClick}>
                 {icon}
                 </button>

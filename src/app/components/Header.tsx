@@ -21,7 +21,7 @@ const Header = () => {
             }
           </button>
           <a href="/">
-            <h1 className={`text-3xl transition-colors md:hover:text-red-600 hover:text-white text-center font-semibold line-clamp-1 ${!isExpanded && 'text-transparent md:text-current'}`}>
+            <h1 className={`text-3xl transition-colors duration-300 md:hover:text-red-600 hover:text-white text-center font-semibold line-clamp-1 ${!isExpanded && 'text-transparent md:text-current'}`}>
               Mis Festarit?
             </h1>
           </a>
@@ -33,7 +33,7 @@ const Header = () => {
             <li>
               <a
                 href="#"
-                className="md:hover:text-red-600 hover:text-white transition-colors md:text-2xl text-3xl truncate"
+                className="md:hover:text-red-600 hover:text-white duration-300 transition-colors md:text-2xl text-3xl truncate"
               >
                 Tietoa
               </a>
@@ -41,7 +41,7 @@ const Header = () => {
             <li>
               <a
                 href="#"
-                className="md:text-2xl text-3xl transition-colors md:hover:text-red-600 hover:text-white truncate"
+                className="md:text-2xl text-3xl transition-colors duration-300 md:hover:text-red-600 hover:text-white truncate"
               >
                 Yhteistiedot
               </a>
@@ -49,7 +49,7 @@ const Header = () => {
             <li>
               <a
                 href="#"
-                className="md:text-2xl text-3xl truncate transition-colors md:hover:text-red-600 hover:text-white"
+                className="md:text-2xl text-3xl truncate transition-colors duration-300 md:hover:text-red-600 hover:text-white"
               >
                 Palaute
               </a>

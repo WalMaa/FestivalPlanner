@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { ArtistsDataContext } from "../../page";
+import { ArtistContext } from "../../page";
 import { getPreview } from '../../api/spotify';
 import { Artist } from '../../types'
 import ReactAudioPlayer from 'react-audio-player';
@@ -7,7 +7,7 @@ import { parseSpotifyId } from "@/app/utilityFunctions";
 import Image from "next/image";
 
 const ArtistList = ({ artistIds }: { artistIds: string[] | null }) => {
-    const artistsData = useContext(ArtistsDataContext);
+    const artistsData = useContext(ArtistContext);
     const [artistPreviews, setArtistPreviews] = useState<{ [key: string]: { trackName: string | null; playbackUrl: string | null; imageUrl: string | null } }>({});
     const [currentAudioElement, setCurrentAudioElement] = useState<HTMLAudioElement | null>(null);
     const audioPlayerRefs: { [key: string]: React.RefObject<ReactAudioPlayer> } = {};

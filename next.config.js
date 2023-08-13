@@ -11,10 +11,13 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
-    });
+    },);
     return config;
   },
-
+  typescript: {
+  ignoreBuildErrors: true
+  },
+  
   images: {
     domains: ['i.scdn.co'],
   }

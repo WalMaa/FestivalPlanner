@@ -51,7 +51,7 @@ const LocationButton = () => {
                             style={locationStyle}
                             aria-roledescription='button'
                             aria-label={location.city}
-                            className="z-0 relative w-7 h-7 bg-red-400 bg-opacity-95 drop-shadow-lg hover:skew-x-0 active:scale-90 -skew-x-[4deg] rounded-full flex items-center group transition-all justify-center hover:scale-125"
+                            className="z-0 relative w-7 h-7 bg-red-400 bg-opacity-95 drop-shadow-lg hover:bg-red-700 hover:border-2 border-red-400 hover:skew-x-0 active:scale-90 -skew-x-[4deg] rounded-full flex items-center group transition-all justify-center hover:scale-125"
                         >
                           <span className="z-0 relative w-6 h-6 bg-red-700 hover:blur-[1px] rounded-full flex items-center hover:skew-x-0 -skew-x-[4deg] hover:animate-ping transition-all justify-center hover:scale-125"></span>
                         </button>

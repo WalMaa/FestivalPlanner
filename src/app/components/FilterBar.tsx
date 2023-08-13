@@ -1,6 +1,6 @@
 import Autocomplete from "@mui/material/Autocomplete"
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { ArtistsDataContext, FestivalDataContext } from '../page';
+import { ArtistContext, FestivalContext } from '../page';
 import TextField from "@mui/material/TextField";
 import { useContext, useState } from "react";
 import { getGenres } from "../api/spotify";
@@ -9,8 +9,8 @@ import React from "react";
 
 const FilterBar = () => {
   
-  const artistsData = useContext(ArtistsDataContext);
-  const festivalData = useContext(FestivalDataContext);
+  const artistsData = useContext(ArtistContext);
+  const festivalData = useContext(FestivalContext);
   const months = ['Kaikki Kuukaudet', 'Kesäkuu', 'Heinäkuu', 'Elokuu', 'Syyskuu']
   const genres: string[] = [];
   
@@ -46,7 +46,6 @@ const FilterBar = () => {
     <div className='flex justify-evenly p-3 mt-20'>
       <ThemeProvider theme={theme}>
         <Autocomplete
-          
           id="Artists-Grouped"
           noOptionsText='Ei löytynyt'
           options={artists?.sort((a: { firstLetter: string; }, b: { firstLetter: string; }) => -b.firstLetter.localeCompare(a.firstLetter)) ?? []}

@@ -1,4 +1,4 @@
-import { ArtistsDataContext, FestivalDataContext } from '../page';
+import { ArtistContext, FestivalContext } from '../page';
 import { Artist, Festival } from '../types';
 import Cross from '/public/images/Cross.svg';
 import SearchIcon from '/public/images/SearchIcon.svg'
@@ -9,8 +9,8 @@ const Search = () => {
     const [isSearchActive, setSearchActive] = useState(false);
     const [query, setQuery] = useState('');
     const searchRef = useRef<HTMLInputElement>(null);
-    const festivals: null | Festival[] = useContext(FestivalDataContext);
-    const artists: null | Artist[] = useContext(ArtistsDataContext);
+    const festivals: null | Festival[] = useContext(FestivalContext);
+    const artists: null | Artist[] = useContext(ArtistContext);
 
     const filteredItems = useMemo(() => {
         return festivals?.filter((festival) => {

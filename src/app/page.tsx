@@ -9,41 +9,50 @@ import UpcomingFestivalsBar from './components/UpcomingFestivalsBar';
 import MapElement from './components/Map/MapElement';
 import { Festival, Artist } from './types'
 
-const FestivalDataContext = createContext< Festival [] | null>(null);
-const ArtistsDataContext = createContext< Artist [] | null>(null);
+const FestivalContext = React.createContext<Festival [] | null>(null);
+const ArtistContext = React.createContext<Artist [] | null>(null);
 
-export default function Home() {
+const Home = () => {
+
+  const [festivalData, setFestivalData] = useState<Festival [] | null>(null);
+  const [artistsData, setArtistsData] = useState<Artist [] | null>(null);
 
 
-  const [festivalData, setFestivalData] = useState<Festival[] | null>(null);
-  const [artistsData, setArtistsData] = useState<Artist[] | null>(null);
-  
-
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const dataFestival = await getFestivals();
-        if (dataFestival) {
-          console.log(dataFestival)
-          setFestivalData(dataFestival);
-        }
-        const dataArtists = await getArtists();
-        if (dataArtists) {
-          setArtistsData(dataArtists);
-        }
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+  const loadFestivals = async () => {
+    try {
+      const response: Festival[] | null = await getFestivals() ?? null;
+      setFestivalData(response);
+    } catch (error) {
+      // Handle error
+      console.error("Error loading festivals:", error);
     }
-
-    fetchData();
+  };
+  
+  const loadArtists = async () => {
+    try {
+      const response: Artist[] | null = await getArtists() ?? null;
+      setArtistsData(response);
+    } catch (error) {
+      // Handle error
+      console.error("Error loading artists:", error);
+    }
+  }
+  
+  useEffect(() => {
+    // Load artists and festivals concurrently
+    Promise.all([loadArtists(), loadFestivals()])
+      .then(() => {
+        // Both data sets loaded successfully
+      })
+      .catch((error) => {
+        console.error("Error loading data:", error);
+      });
   }, []);
 
   return (
-    <FestivalDataContext.Provider value={festivalData}>
-      <ArtistsDataContext.Provider value={artistsData}>
+    <FestivalContext.Provider value={festivalData}>
+      <ArtistContext.Provider value={artistsData}>
         <div className="flex flex-1 flex-col ">
-
             <Header />
 
             {/* Middle Content */}
@@ -65,9 +74,8 @@ export default function Home() {
 
         </div>
         <div id='portal'></div>
-
-      </ArtistsDataContext.Provider>
-    </FestivalDataContext.Provider>
+      </ArtistContext.Provider>
+    </FestivalContext.Provider>
   );
 }
-export { FestivalDataContext, ArtistsDataContext }
+export { Home as default, FestivalContext, ArtistContext }

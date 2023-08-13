@@ -1,11 +1,11 @@
 import { useContext, useState } from 'react';
-import { FestivalDataContext } from '../page';
+import { FestivalContext } from '../page';
 import { Festival } from '../types';
 import { festivalCountdown } from '../utilityFunctions';
 import FestivalTime from './Generic/FestivalTime';
 
 const UpcomingFestivalsBar = () => {
-    const festivalData = useContext(FestivalDataContext);
+    const festivalData = useContext(FestivalContext);
     const [isExpanded, setIsExpanded] = useState(false);
 
 

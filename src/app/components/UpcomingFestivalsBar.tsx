@@ -20,7 +20,7 @@ const UpcomingFestivalsBar = () => {
     return (
         <div className='absolute left-1/2 -translate-x-1/2 bottom-10 lg:bottom-28 lg:left-[80%] flex-1 flex-col '>
             <div className={`flex transition-all w-80 duration-300 px-2 flex-col-reverse  bg-gradient-to-r from-orange-800 via-30% via-orange-700 to-orange-800
-                  rounded-xl shadow-md ${isExpanded ? 'h-96 pt-3' : 'h-1 sm:h-14'}`}>
+                  rounded-xl shadow-md ${isExpanded ? 'h-96 pt-2' : 'h-1 sm:h-14'}`}>
                 <div className='flex my-1 sm:p-2 justify-center sm:justify-normal items-center'>
                     <button className='h-4 hover:scale-110 transition-all  duration-300' onClick={() => setIsExpanded(!isExpanded)}>
                         {isExpanded ?

@@ -3,15 +3,23 @@ import { FestivalContext } from '../page';
 import { Festival } from '../types';
 import { festivalCountdown } from '../utilityFunctions';
 import FestivalTime from './Generic/FestivalTime';
+import { MemoizedFestivalInfoComponent } from './Map/MapElement';
 
 const UpcomingFestivalsBar = () => {
     const festivalData = useContext(FestivalContext);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [selectedFestival, setSelectedFestival] = useState<string | null>(null);
+
+    const handleFestivalClick = (location: string) => {
+        if (location) {
+            setSelectedFestival(location);
+        };
+    }
 
 
     return (
-        <div className='flex md:justify-end self-end h-14 flex-1 flex-col '>
-            <div className={`flex transition-all w-80 duration-300 flex-col-reverse p-2 bg-gradient-to-r from-orange-800 via-30% via-orange-700 to-orange-800 m-10
+        <div className='absolute left-1/2 -translate-x-1/2 bottom-10 lg:bottom-28 lg:left-[80%] flex-1 flex-col '>
+            <div className={`flex transition-all w-80 duration-300 flex-col-reverse p-2 bg-gradient-to-r from-orange-800 via-30% via-orange-700 to-orange-800
                   rounded-xl shadow-md ${isExpanded ? 'h-96' : 'h-14'}`}>
                 <div className='flex my-1 items-center'>
                     <button className='h-4 hover:scale-110 transition-all  duration-300' onClick={() => setIsExpanded(!isExpanded)}>
@@ -49,25 +57,24 @@ const UpcomingFestivalsBar = () => {
 
                         return (
                             <li className={`flex h-16 rounded-md shadow-md border-b-1 my-1 px-2 py-1 ${daysRemaining < 0 ? 'bg-gray' : 'bg-white'}`}
-                                
                                 key={festival.id}>
-                            <button className='flex flex-1' onClick={() => {window.open(festival.url, '_blank')}}>
-
-                                <div className='flex flex-col w-46 overflow-hidden'>
-                                    <h4 className='text-lg truncate text-left'>{festival.name}</h4>
-                                    <h4 className='text-slate-400 text-left'>{festival.location} </h4>
-                                </div>
-                                <div className='flex flex-1 items-center justify-end gap-2 mr-1'>
-                                    <FestivalTime className='' startDate={festival.startDate} endDate={festival.endDate} />
-
-                                </div>
-                            </button>
+                                <button className='flex flex-1' onClick={() => handleFestivalClick(festival.location)}>
+                                    <div className='flex flex-col w-46 overflow-hidden'>
+                                        <h4 className='text-lg truncate text-left'>{festival.name}</h4>
+                                        <h4 className='text-slate-400 text-left'>{festival.location} </h4>
+                                    </div>
+                                    <div className='flex flex-1 items-center justify-end gap-2 mr-1'>
+                                        <FestivalTime className='' startDate={festival.startDate} endDate={festival.endDate} />
+                                    </div>
+                                </button>
                             </li>
                         );
                     })}
-
                 </ol>
             </div>
+            { selectedFestival && 
+                <MemoizedFestivalInfoComponent city={selectedFestival} setExpandedLocation={setSelectedFestival} />
+            }
         </div>
     );
 }

@@ -61,7 +61,6 @@ const Home = () => {
               <FilterBar />
 
               <div className='md:flex flex-1 justify-center'>
-                  <div className='sm:flex sm:flex-1'></div>
                 {/* Map */}
                   <MapElement />
                 {/* Search */}

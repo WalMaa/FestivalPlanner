@@ -5,6 +5,7 @@ import { Artist } from '../../types'
 import ReactAudioPlayer from 'react-audio-player';
 import { parseSpotifyId } from "@/app/utilityFunctions";
 import Image from "next/image";
+import Loading from "@/app/loading";
 
 const ArtistList = ({ artistIds }: { artistIds: string[] | null }) => {
     const artistsData = useContext(ArtistContext);
@@ -36,25 +37,26 @@ const ArtistList = ({ artistIds }: { artistIds: string[] | null }) => {
 
     useEffect(() => {
         const fetchArtistPreviews = async () => {
-            const previews: { [key: string]: { trackName: string | null; playbackUrl: string | null; imageUrl: string | null } } = {};
             if (artistsData) {
-                
-                await Promise.all(
-                    artistsData?.map(async (artist: Artist) => {
+                for (const artist of artistsData) {
+                    try {
                         const { trackName, playbackUrl, imageUrl } = await getPreview(parseSpotifyId(artist.spotifyId));
-                        previews[artist.id] = { trackName, playbackUrl, imageUrl };
-                    })
-                );
+                        setArtistPreviews(prevPreviews => ({
+                            ...prevPreviews,
+                            [artist.id]: { trackName, playbackUrl, imageUrl }
+                        }));
+                    } catch (error) {
+                        console.error(`Error fetching preview for artist ${artist.id}:`, error);
+                    }
+                }
             }
-            setArtistPreviews(previews);
         };
-
+    
         fetchArtistPreviews();
     }, [artistsData]);
 
-
     return (
-        <div className="flex flex-shrink flex-col overflow-auto px-2 mx-1 sm:mx-2 scroll-smooth scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent h-80">
+        <div className="flex flex-1 flex-shrink flex-col overflow-auto px-2 mx-1 sm:mx-2 scroll-smooth scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent h-80">
             {artistsData?.filter((artist: { id: string }) => artistIds?.includes(artist.id)).map((artist: Artist) => {
                 const preview = artistPreviews[artist.id];
                 audioPlayerRefs[artist.id] = React.createRef();
@@ -66,17 +68,15 @@ const ArtistList = ({ artistIds }: { artistIds: string[] | null }) => {
                 // Preview data is not available yet
                 if (!preview) {
                     return (
-                        <div key={artist.id} className="flex flex-1 h-20 sm:w-64 shadow-sm shadow-white p-2 bg-white mr-1 my-1 justify-start items-center animate-pulse rounded-lg">
-                            <div className="lds-ring mt-4"><div></div><div></div><div></div><div></div></div>
-                            <h2 className="text-xl">Loading...</h2>
-                        </div>
+                        <Loading key={artist.id}></Loading>
                     );
                 }
 
                 // Artist Card
                 return (
+
                     <li key={artist.id} className={`flex h-20 shadow-sm shadow-white p-2 bg-white duration-700 transition mr-1 my-1  justify-between rounded-lg 
-                        ${artist.id === isPlaying && 'scale-105'} ${(!(artist.id === isPlaying) && isPlaying != null) && 'blur-sm'}`}>
+                            ${artist.id === isPlaying && 'scale-105'} ${(!(artist.id === isPlaying) && isPlaying != null) && 'blur-sm'}`}>
                         <span className="flex">
                             {/* Image */}
                             <Image
@@ -111,7 +111,6 @@ const ArtistList = ({ artistIds }: { artistIds: string[] | null }) => {
                                 }
                             </div>
                         </span>
-
 
                         {/* Audio Player */}
                         {preview.playbackUrl &&

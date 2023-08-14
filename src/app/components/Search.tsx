@@ -1,5 +1,6 @@
 import { ArtistContext, FestivalContext } from '../page';
 import { Artist, Festival } from '../types';
+import { MemoizedFestivalInfoComponent } from './Map/MapElement';
 import Cross from '/public/images/Cross.svg';
 import SearchIcon from '/public/images/SearchIcon.svg'
 import { useContext, useMemo, useRef, useState } from "react";
@@ -10,7 +11,7 @@ const Search = () => {
     const [query, setQuery] = useState('');
     const searchRef = useRef<HTMLInputElement>(null);
     const festivals: null | Festival[] = useContext(FestivalContext);
-    const artists: null | Artist[] = useContext(ArtistContext);
+    const [selectedFestival, setSelectedFestival] = useState<string | null>(null);
 
     const filteredItems = useMemo(() => {
         return festivals?.filter((festival) => {
@@ -36,15 +37,22 @@ const Search = () => {
         }
     }
 
+    function handleItemClick(location: string) {
+        if (location) {
+            setSelectedFestival(location);
+            setSearchActive(false);
+        }
+    }
+
     return (
-        <div className=' mb-24 -top-10 sticky justify-center align-middle flex self-end m-10 delay-150  transition-transform duration-300'>
+        <div className='bottom-[10.5rem] right-[10%] lg:right-[35%] absolute justify-center align-middle flex self-end delay-150  transition-transform duration-300'>
             {/*Search results */}
-             <ul className={`absolute flex flex-col-reverse scroll-smooth scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent bottom-0 right-0 transition-[max-height, opacity] duration-300 w-64 max-h-64 overflow-auto border border-b-0 border-slate-300 bg-white rounded-t-lg z-20 
-             ${isSearchActive ? 'visible' : 'max-h-0 opacity-0'}`}>
+             <ul className={`absolute flex flex-col-reverse scroll-smooth scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent bottom-0 right-0 transition-[max-height, opacity] duration-300 w-64  overflow-auto border border-b-0 border-slate-300 bg-white rounded-t-lg z-20 
+             ${isSearchActive ? 'visible max-h-64' : 'max-h-0 invisible opacity-0'}`}>
                 {filteredItems?.map((festival: Festival) => (
                     
                     <li key={festival.id} className='flex flex-col group hover:bg-zinc-200'>
-                    <button onClick={() => {console.log(festival.name)}} className='flex justify-start transition-colors'><h2 className='text-lg mt-1 ml-5'>{festival.name}</h2></button>
+                    <button onClick={() => {handleItemClick(festival.location)}} className='flex justify-start transition-colors'><h2 className='text-lg mt-1 ml-5'>{festival.name}</h2></button>
                     <span className='bg-slate-300 group-hover:bg-red-400 self-center transition-[width] group-hover:w-full w-10/12 h-[1px]'></span>
                     </li>
                 ))}
@@ -70,6 +78,9 @@ const Search = () => {
                     {icon}
                 </button>
             </span>
+            { selectedFestival && 
+                <MemoizedFestivalInfoComponent city={selectedFestival} setExpandedLocation={setSelectedFestival} />
+            }
         </div>
     )
 }

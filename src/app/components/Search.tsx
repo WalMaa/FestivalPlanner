@@ -11,13 +11,37 @@ const Search = () => {
     const [query, setQuery] = useState('');
     const searchRef = useRef<HTMLInputElement>(null);
     const festivals: null | Festival[] = useContext(FestivalContext);
+    const artists: null | Artist[] = useContext(ArtistContext);
     const [selectedFestival, setSelectedFestival] = useState<string | null>(null);
+    const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
 
+    const artistsFestival = useMemo(() => {
+        let tempFestivals: Festival[] = [];
+        if (festivals && selectedArtist) {
+            for (let index = 0; index < festivals.length; index++) {
+                if (festivals[index].artists?.includes(selectedArtist?.id)) {
+                    tempFestivals.push(festivals[index]);
+                }
+            }
+            return tempFestivals;
+        }
+    }, [festivals, selectedArtist]);
+
+
+    const combinedArray = useMemo(() => {
+        if ((festivals && artists) && !null) {
+            return [...festivals, ...artists];
+        } else {
+            return [];
+        }
+    }, [festivals, artists]);
+
+    // returns an array of objects that match the search query
     const filteredItems = useMemo(() => {
-        return festivals?.filter((festival) => {
-            return festival.name.toLowerCase().includes(query.toLowerCase())
+        return combinedArray?.filter((object) => {
+            return object?.name.toLowerCase().includes(query.toLowerCase())
         })
-    }, [festivals, query])
+    }, [query, combinedArray])
 
 
     const icon = isSearchActive ? (
@@ -28,6 +52,7 @@ const Search = () => {
 
     function handleSearchClick() {
         if (isSearchActive) {
+            setSelectedArtist(null);
             setSearchActive(false);
         } else {
             setSearchActive(true)
@@ -37,27 +62,44 @@ const Search = () => {
         }
     }
 
-    function handleItemClick(location: string) {
-        if (location) {
-            setSelectedFestival(location);
+    function handleItemClick(item: Festival | Artist) {
+        setSelectedArtist(null);
+        if ('location' in item) {
+            setSelectedFestival(item.location);
             setSearchActive(false);
+        } else {
+            setSelectedArtist(item);
         }
     }
 
     return (
         <div className='bottom-[10.5rem] right-[10%] lg:right-[35%] absolute justify-center align-middle flex self-end delay-150  transition-transform duration-300'>
             {/*Search results */}
-             <ul className={`absolute flex flex-col-reverse scroll-smooth scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent bottom-0 right-0 transition-[max-height, opacity] duration-300 w-64  overflow-auto border border-b-0 border-slate-300 bg-white rounded-t-lg z-20 
+            <ul className={`absolute flex flex-col-reverse scroll-smooth scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-transparent bottom-0 right-0 transition-[max-height, opacity] duration-300 w-64  overflow-auto border border-b-0 border-slate-300 bg-white rounded-t-lg z-10 
              ${isSearchActive ? 'visible max-h-64' : 'max-h-0 invisible opacity-0'}`}>
-                {filteredItems?.map((festival: Festival) => (
-                    
-                    <li key={festival.id} className='flex flex-col group hover:bg-zinc-200'>
-                    <button onClick={() => {handleItemClick(festival.location)}} className='flex justify-start transition-colors'><h2 className='text-lg mt-1 ml-5'>{festival.name}</h2></button>
-                    <span className='bg-slate-300 group-hover:bg-red-400 self-center transition-[width] group-hover:w-full w-10/12 h-[1px]'></span>
+                <>
+                    {filteredItems.map((item, index) => (
+                        <li key={index} className='flex flex-col group hover:bg-zinc-200'>
+                            <button onClick={() => { handleItemClick(item) }} className='flex transition-colors'>
+                                <h4 className='text-lg mt-1 ml-5'>{item?.name}</h4>
+                            </button>
+                            <span className='bg-slate-300 group-hover:bg-red-400 self-center transition-[width] group-hover:w-full w-10/12 h-[1px]'></span>
+                        </li>
+                    ))}
+                </>
+            </ul>
+            {/* Artists applicable festivals */}
+            <ul className={`absolute transition-opacity duration-300 empty:opacity-0 border border-l-0 border-b-0 border-slate-300 rounded-tr-lg -right-40 bottom-28 w-40 ${isSearchActive ? 'visible' : 'invisible opacity-0'}`}>
+                {artistsFestival?.map((festival, index) => (
+                    <li key={index} className='flex flex-1 flex-col group duration-300 transition-colors hover:bg-zinc-200  '>
+                        <button onClick={() => { handleItemClick(festival) }} className=''>
+                            <h4 className='text-lg text-left ml-5 mt-1'>{festival?.name}</h4>
+                        </button>
+                        <span className='bg-slate-300 group-hover:bg-red-400 self-center transition-[width] group-hover:w-full w-10/12 h-[1px]'></span>
                     </li>
                 ))}
             </ul>
-            
+
             {/*Search Text Box */}
             <label aria-label='search'>
                 <input
@@ -78,7 +120,7 @@ const Search = () => {
                     {icon}
                 </button>
             </span>
-            { selectedFestival && 
+            {selectedFestival &&
                 <MemoizedFestivalInfoComponent city={selectedFestival} setExpandedLocation={setSelectedFestival} />
             }
         </div>

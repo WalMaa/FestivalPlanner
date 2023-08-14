@@ -21,7 +21,7 @@ This is a hobby project which allows users to see upcoming festivals in Finland.
 
 ## Prerequisites
 
-* Node.js (development build uses v16.14.2.)
+* Node.js (development build uses v18.17.1.)
 
 ## Clone the repository
 
@@ -33,11 +33,6 @@ Change into the project directory
 
     npm install
     
-## Start the PocketBase server
-
- Navigate to the pocketbase directory on a separate CLI and enter the following command:
- 
-    pocketbase serve
 
 ## Start the development server
 
@@ -45,17 +40,19 @@ Change into the project directory
 
 # Project Status
 
-This project is actively being developed. The latest version is  `v.0.4.0`
+This project is actively being developed. The latest version is  `v.0.5.0`
 
 ## Current Features
 * Allows users to see upcoming festivals on a timeline
 * Allows users to see listed festivals based on city
 * Allows users to see featuring artists and listen to their audio snippets
+* Allows users to search for festivals
 
 ## Known issues
 * Location buttons do not scale properly on mobile
 
 # Release History
+* `V.0.5.0` - User can search festivals and open the locations through search. (14-08-2023)
 * `V.0.4.0` - Streamlined UI. (13-08-2023)
 * `V.0.3.1` - Enhanced responsitivity for mobile. (23-06-2023)
 * `V.0.3.0` - Users can select a location and see the festivals and artists.

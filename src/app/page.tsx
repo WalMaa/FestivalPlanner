@@ -52,7 +52,7 @@ const Home = () => {
   return (
     <FestivalContext.Provider value={festivalData}>
       <ArtistContext.Provider value={artistsData}>
-        <div className="flex flex-1 flex-col ">
+        <div className="flex flex-1 flex-col">
             <Header />
 
             {/* Middle Content */}

@@ -44,7 +44,7 @@ const LocationButton = () => {
         <div className="flex justify-center flex-1">
             <MapImage
                 strokeWidth="1.5"
-                className="stroke-black max-w-[120%] absolute fill-none"
+                className="stroke-black absolute fill-none overflow-hidden max-w-[100%]"
                 width="500"
             />
             

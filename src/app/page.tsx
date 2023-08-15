@@ -6,7 +6,7 @@ import Search from './components/Search';
 import FilterBar from './components/FilterBar';
 import { getArtists, getFestivals } from './api/pocketBase';
 import UpcomingFestivalsBar from './components/UpcomingFestivalsBar';
-import MapElement from './components/Map/MapElement';
+import MapElement from './components/MapElement';
 import { Festival, Artist } from './types'
 
 const FestivalContext = React.createContext<Festival [] | null>(null);

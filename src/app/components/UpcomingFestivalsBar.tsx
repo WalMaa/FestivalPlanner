@@ -1,21 +1,22 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { FestivalContext } from '../page';
 import { Festival } from '../types';
 import { festivalCountdown } from '../utilityFunctions';
 import FestivalTime from './Generic/FestivalTime';
-import { MemoizedFestivalInfoComponent } from './Map/MapElement';
+import { MemoizedFestivalInfoComponent } from './MapElement';
 
 const UpcomingFestivalsBar = () => {
     const festivalData = useContext(FestivalContext);
     const [isExpanded, setIsExpanded] = useState(false);
+    const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
     const [selectedFestival, setSelectedFestival] = useState<string | null>(null);
 
-    const handleFestivalClick = (location: string) => {
-        if (location) {
-            setSelectedFestival(location);
-        };
-    }
-
+    function handleFestivalClick(festival: Festival) {
+        if (festival) {
+            setSelectedLocation(festival.location);
+            setSelectedFestival(festival.id);
+        }
+    };
 
     return (
         <div className='absolute left-1/2 -translate-x-1/2 bottom-10 lg:bottom-28 lg:left-[80%] flex-1 flex-col '>
@@ -58,7 +59,7 @@ const UpcomingFestivalsBar = () => {
                         return (
                             <li className={`flex h-16 rounded-md active:scale-95 hover:brightness-75 duration-300 transition-[scale, brightness] shadow-md border-b-1 my-1 px-2 py-1 ${daysRemaining < 0 ? 'bg-gray' : 'bg-white'}`}
                                 key={festival.id}>
-                                <button className='flex flex-1' onClick={() => handleFestivalClick(festival.location)}>
+                                <button className='flex flex-1' onClick={() => handleFestivalClick(festival)}>
                                     <div className='flex flex-col w-46 overflow-hidden'>
                                         <h4 className='text-lg truncate text-left'>{festival.name}</h4>
                                         <h4 className='text-slate-400 text-left'>{festival.location} </h4>
@@ -72,8 +73,8 @@ const UpcomingFestivalsBar = () => {
                     })}
                 </ol>
             </div>
-            { selectedFestival && 
-                <MemoizedFestivalInfoComponent city={selectedFestival} setExpandedLocation={setSelectedFestival} />
+            {selectedLocation &&
+                <MemoizedFestivalInfoComponent location={selectedLocation} festival={selectedFestival} setExpandedLocation={setSelectedLocation} />
             }
         </div>
     );

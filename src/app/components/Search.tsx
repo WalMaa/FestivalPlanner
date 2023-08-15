@@ -1,9 +1,9 @@
 import { ArtistContext, FestivalContext } from '../page';
 import { Artist, Festival } from '../types';
-import { MemoizedFestivalInfoComponent } from './Map/MapElement';
+import { MemoizedFestivalInfoComponent } from './MapElement';
 import Cross from '/public/images/Cross.svg';
 import SearchIcon from '/public/images/SearchIcon.svg'
-import { useContext, useMemo, useRef, useState } from "react";
+import { useContext, useEffect, useMemo, useRef, useState } from "react";
 
 const Search = () => {
 
@@ -12,6 +12,7 @@ const Search = () => {
     const searchRef = useRef<HTMLInputElement>(null);
     const festivals: null | Festival[] = useContext(FestivalContext);
     const artists: null | Artist[] = useContext(ArtistContext);
+    const [selectedLocation, setSelectedLocation] = useState<string | null>(null);
     const [selectedFestival, setSelectedFestival] = useState<string | null>(null);
     const [selectedArtist, setSelectedArtist] = useState<Artist | null>(null);
 
@@ -65,7 +66,8 @@ const Search = () => {
     function handleItemClick(item: Festival | Artist) {
         setSelectedArtist(null);
         if ('location' in item) {
-            setSelectedFestival(item.location);
+            setSelectedFestival(item.id);
+            setSelectedLocation(item.location);
             setSearchActive(false);
         } else {
             setSelectedArtist(item);
@@ -120,8 +122,8 @@ const Search = () => {
                     {icon}
                 </button>
             </span>
-            {selectedFestival &&
-                <MemoizedFestivalInfoComponent city={selectedFestival} setExpandedLocation={setSelectedFestival} />
+            {selectedLocation &&
+                <MemoizedFestivalInfoComponent location={selectedLocation} festival={selectedFestival} setExpandedLocation={setSelectedLocation} />
             }
         </div>
     )

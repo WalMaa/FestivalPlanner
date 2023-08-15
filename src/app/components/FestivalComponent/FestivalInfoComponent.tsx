@@ -7,8 +7,7 @@ import ArtistList from "./ArtistList";
 import ReactDom from "react-dom";
 import FestivalTime from "../Generic/FestivalTime";
 
-
-const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: string, festival?: string | null, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>> }) => {
+const FestivalInfoComponent = ({ location: city, festival: festivalId, setExpandedLocation }: { location: string, festival?: string | null, setExpandedLocation: React.Dispatch<React.SetStateAction<string | null>> }) => {
     const festivalData = useContext(FestivalContext);
     const festivalsAtLocation = useMemo(() => {
         return festivalData?.filter((festival) => festival.location === city) ?? [];
@@ -22,13 +21,21 @@ const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: 
         if (festivalsAtLocation && festivalsAtLocation.length > 0) {
             setSelectedFestival(festivalsAtLocation[0].id);
         };
-
         //if festival exists set it as selected
-        if (festival) {
-            setSelectedFestival(festival);
+        if (festivalId) {
+            setSelectedFestival(festivalId);
         };
         // this ensures that it happens only from null -> non-null i.e. not when user input happens
-    }, [festivalsAtLocation, festival]);
+    }, [festivalsAtLocation, festivalId]);
+
+
+    // this prevents background scrolling on mobile when the location is expanded
+    useEffect(() => {
+        document.body.style.overflow = 'hidden';
+        return () => {
+            document.body.style.overflow = 'auto';
+        };
+    }, []);
 
     const closeLocation = () => {
         if (setExpandedLocation) {
@@ -36,7 +43,7 @@ const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: 
         }
     };
 
-    // Close modal on click outside
+    // Close modal on click outside event
     useEffect(() => {
         const handleOutsideClick = (event: Event) => {
             if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
@@ -67,6 +74,7 @@ const FestivalInfoComponent = ({ city, festival, setExpandedLocation }: { city: 
         </div>
 
     }
+
     // Festival at location
     return ReactDom.createPortal(
         <>

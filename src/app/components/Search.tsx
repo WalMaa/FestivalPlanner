@@ -89,7 +89,7 @@ const Search = () => {
                 </>
             </ul>
             {/* Artists applicable festivals */}
-            <ul className={`absolute transition-opacity duration-300 empty:opacity-0 border border-l-0 border-b-0 border-slate-300 rounded-tr-lg -right-40 bottom-28 w-40 ${isSearchActive ? 'visible' : 'invisible opacity-0'}`}>
+            <ul className={`absolute transition-opacity duration-300 empty:opacity-0 border lg:border-l-0 border-b-0 border-slate-300 rounded-t-lg lg:rounded-none lg:rounded-tr-lg z-10 bg-white bottom-64 right-16 lg:-right-40 lg:bottom-10 w-40 ${isSearchActive ? 'visible' : 'invisible opacity-0'}`}>
                 {artistsFestival?.map((festival, index) => (
                     <li key={index} className='flex flex-1 flex-col group duration-300 transition-colors hover:bg-zinc-200  '>
                         <button onClick={() => { handleItemClick(festival) }} className=''>

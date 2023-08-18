@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fi">
-      <body className={`${font.className} bg-white`}>{children}</body>
+      <body className={`${font.className} bg-[url("http://127.0.0.1:5500/public/images/background.svg")]`}>{children}</body>
     </html>
   )
 }

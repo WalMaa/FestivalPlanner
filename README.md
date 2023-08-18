@@ -1,6 +1,6 @@
 # FestivalPlanner
 
-==This project is currently deployed [here!](https://www.example.com)==
+This project is currently deployed [here!](https://www.misfestarit.com)
 
 This is a hobby project which allows users to see upcoming festivals in Finland. It uses data from various festival sources to provide a comprehensive list of upcoming festivals, along with detailed information such as location, dates, lineup, and ticket prices.
 

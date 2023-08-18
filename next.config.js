@@ -5,10 +5,12 @@ const { parsed: myEnv } = require('dotenv').config();
 const ContentSecurityPolicy = `
   default-src 'self';
   script-src 'self';
-  child-src example.com;
-  style-src 'self' example.com;
+  child-src misfestarit.com;
+  style-src 'self' misfestarit.com;
   font-src 'self';
-`
+  connect-src 'self' https://festivalplanner.hop.sh https://api.spotify.com;
+`;
+
 
 const nextConfig = {
   webpack: (config) => {

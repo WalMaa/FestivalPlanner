@@ -1,5 +1,7 @@
 # FestivalPlanner
 
+==This project is currently deployed [here!](https://www.example.com)==
+
 This is a hobby project which allows users to see upcoming festivals in Finland. It uses data from various festival sources to provide a comprehensive list of upcoming festivals, along with detailed information such as location, dates, lineup, and ticket prices.
 
 ## Features
@@ -32,7 +34,10 @@ Change into the project directory
 ## Install dependencies 
 
     npm install
-    
+
+## Get Spotify API key
+
+If you want to see the artist previews, you need to get spotify API keys and supply them to the api class through an env. file
 
 ## Start the development server
 

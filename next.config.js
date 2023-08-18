@@ -1,10 +1,14 @@
-// next.config.js
 const Dotenv = require('dotenv-webpack');
 const webpack = require('webpack');
 
 const { parsed: myEnv } = require('dotenv').config();
-const nonce = randomBytes(128).toString('base64')
-const csp = `object-src 'none'; base-uri 'none'; script-src 'self' 'unsafe-eval' 'unsafe-inline' https: http: 'nonce-${nonce}' 'strict-dynamic'`
+const ContentSecurityPolicy = `
+  default-src 'self';
+  script-src 'self';
+  child-src example.com;
+  style-src 'self' example.com;
+  font-src 'self';
+`
 
 const nextConfig = {
   webpack: (config) => {
@@ -23,7 +27,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: csp,
+            value: ContentSecurityPolicy.replace(/\s{2,}/g, ' ').trim()
           },
         ],
       },

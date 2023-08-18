@@ -9,13 +9,13 @@ import UpcomingFestivalsBar from './components/UpcomingFestivalsBar';
 import MapElement from './components/MapElement';
 import { Festival, Artist } from './types'
 
-const FestivalContext = React.createContext<Festival [] | null>(null);
-const ArtistContext = React.createContext<Artist [] | null>(null);
+const FestivalContext = createContext<Festival[] | null>(null);
+const ArtistContext = createContext<Artist[] | null>(null);
 
 const Home = () => {
 
-  const [festivalData, setFestivalData] = useState<Festival [] | null>(null);
-  const [artistsData, setArtistsData] = useState<Artist [] | null>(null);
+  const [festivalData, setFestivalData] = useState<Festival[] | null>(null);
+  const [artistsData, setArtistsData] = useState<Artist[] | null>(null);
 
 
   const loadFestivals = async () => {
@@ -27,7 +27,7 @@ const Home = () => {
       console.error("Error loading festivals:", error);
     }
   };
-  
+
   const loadArtists = async () => {
     try {
       const response: Artist[] | null = await getArtists() ?? null;
@@ -37,7 +37,7 @@ const Home = () => {
       console.error("Error loading artists:", error);
     }
   }
-  
+
   useEffect(() => {
     // Load artists and festivals concurrently
     Promise.all([loadArtists(), loadFestivals()])
@@ -53,23 +53,22 @@ const Home = () => {
     <FestivalContext.Provider value={festivalData}>
       <ArtistContext.Provider value={artistsData}>
         <div className="flex flex-1 flex-col">
-            <Header />
+          <Header />
 
-            {/* Middle Content */}
+          {/* Middle Content */}
 
-              {/* Filter Bar */}
-              <FilterBar />
+          {/* Filter Bar */}
+          <FilterBar />
 
-              <div className='md:flex flex-1 justify-center'>
-                {/* Map */}
-                  <MapElement />
-                {/* Search */}
-                <Search />
+          <div className='md:flex flex-1 justify-center'>
+            {/* Map */}
+            <MapElement />
+            {/* Search */}
+            <Search />
 
-
-                {/* Right Side */}
-                  <UpcomingFestivalsBar />
-              </div>
+            {/* Right Side */}
+            <UpcomingFestivalsBar />
+          </div>
 
         </div>
         <div id='portal'></div>

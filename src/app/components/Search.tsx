@@ -3,7 +3,7 @@ import { Artist, Festival } from '../types';
 import { MemoizedFestivalInfoComponent } from './MapElement';
 import Cross from '/public/images/Cross.svg';
 import SearchIcon from '/public/images/SearchIcon.svg'
-import { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useContext, useMemo, useRef, useState } from "react";
 
 const Search = () => {
 

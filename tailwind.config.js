@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        
+      },
         colors: {
           transparent: 'transparent',
           current: 'currentColor',
@@ -47,10 +50,14 @@ module.exports = {
             900: '#006976',
           }
         },
+        keyframes: {
+      
+        }
     },
     
   },
   plugins: [
+    require('tailwindcss-animated'),
     require('tailwind-scrollbar-hide'),
     require('tailwind-scrollbar'),
   ],

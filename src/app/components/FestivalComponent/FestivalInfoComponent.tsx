@@ -72,7 +72,7 @@ const FestivalInfoComponent = ({
   // No festivals at location
   if (festivalsAtLocation.length === 0) {
     return (
-      <div className="fixed top-0 left-0 w-full h-full z-10 backdrop-blur-sm">
+      <div className="fixed animate-jump-in animate-ease-out top-0 left-0 w-full h-full z-10 backdrop-blur-sm">
         <div
           ref={modalRef}
           className="absolute top-1/3 right-1/2 translate-x-1/2 w-64 shadow-md rounded-lg p-2 z-20 "

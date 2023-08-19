@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import FestivalInfoComponent from './FestivalComponent/FestivalInfoComponent';
 import MapImage from '@/../public/images/MapFinland.svg'
 import React from 'react';
+import Image from 'next/image';
 
 export const MemoizedFestivalInfoComponent = React.memo(FestivalInfoComponent);
 
@@ -30,12 +31,13 @@ const LocationButton = () => {
 
     return (
         <div className="flex justify-center flex-1">
-            <MapImage
-                strokeWidth="0.5"
-                className="stroke-black absolute fill-white overflow-hidden"
-                width="500"
+            <Image
+                className="absolute"
+                src="/images/MapFinland.svg"
+                alt="Picture of the author"
+                width={500}
+                height={500}
             />
-
             {locations.map((location) => {
                 const locationStyle = getLocationStyle(location.city);
                 const isExpanded = expandedLocation === location.city;

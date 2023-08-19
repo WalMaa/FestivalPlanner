@@ -3,14 +3,13 @@ const webpack = require('webpack');
 
 const { parsed: myEnv } = require('dotenv').config();
 const ContentSecurityPolicy = `
-  default-src 'self';
-  script-src 'self';
+  default-src 'self' misfestarit.com localhost:5500 https://p.scdn.co;
+  script-src 'self' misfestarit.com localhost:3000 'unsafe-inline' 'unsafe-eval';
   child-src misfestarit.com;
-  style-src 'self' misfestarit.com;
+  style-src 'self' misfestarit.com 'unsafe-inline';
   font-src 'self';
-  connect-src 'self' https://festivalplanner.hop.sh https://api.spotify.com;
+  connect-src 'self' https://festivalplanner.hop.sh https://api.spotify.com https://accounts.spotify.com;
 `;
-
 
 const nextConfig = {
   webpack: (config) => {

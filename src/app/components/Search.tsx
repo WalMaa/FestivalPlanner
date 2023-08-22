@@ -1,6 +1,6 @@
 import { ArtistContext, FestivalContext } from '../page';
 import { Artist, Festival } from '../types';
-import { MemoizedFestivalInfoComponent } from './MapElement';
+import MemoizedFestivalInfoComponent from './FestivalComponent/FestivalInfoComponent';
 import Cross from '/public/images/Cross.svg';
 import SearchIcon from '/public/images/SearchIcon.svg'
 import { useContext, useMemo, useRef, useState } from "react";

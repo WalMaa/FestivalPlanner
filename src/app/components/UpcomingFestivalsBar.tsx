@@ -3,7 +3,7 @@ import { FestivalContext } from "../page";
 import { Festival } from "../types";
 import { festivalCountdown } from "../utilityFunctions";
 import FestivalTime from "./Generic/FestivalTime";
-import { MemoizedFestivalInfoComponent } from "./MapElement";
+import { MemoizedFestivalInfoComponent } from "./FestivalComponent/FestivalInfoComponent";
 
 const UpcomingFestivalsBar = () => {
   const festivalData = useContext(FestivalContext);

@@ -8,7 +8,7 @@ const ContentSecurityPolicy = `
   child-src misfestarit.com;
   style-src 'self' misfestarit.com 'unsafe-inline';
   font-src 'self';
-  connect-src 'self' https://festivalplanner.hop.sh https://api.spotify.com https://accounts.spotify.com;
+  connect-src 'self' https://vitals.vercel-insights.com/ https://festivalplanner.hop.sh https://api.spotify.com https://accounts.spotify.com;
 `;
 
 const nextConfig = {

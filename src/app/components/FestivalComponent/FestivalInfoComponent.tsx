@@ -237,4 +237,6 @@ const FestivalInfoComponent = ({
   );
 };
 
+export const MemoizedFestivalInfoComponent = React.memo(FestivalInfoComponent);
+
 export default FestivalInfoComponent;

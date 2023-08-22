@@ -5,7 +5,7 @@ import { Artist } from "../../types";
 import ReactAudioPlayer from "react-audio-player";
 import { parseSpotifyId } from "@/app/utilityFunctions";
 import Image from "next/image";
-import Loading from "@/app/loading";
+import ArtistLoading from "@/app/loading";
 
 const ArtistList = ({
   className,
@@ -22,10 +22,13 @@ const ArtistList = ({
       imageUrl: string | null;
     };
   }>({});
+
   const [currentAudioElement, setCurrentAudioElement] =
     useState<HTMLAudioElement | null>(null);
+
   const audioPlayerRefs: { [key: string]: React.RefObject<ReactAudioPlayer> } =
     {};
+
   const [isPlaying, setIsPlaying] = useState<string | null>(null);
 
   const togglePlay = (artistId: string) => {
@@ -90,10 +93,22 @@ const ArtistList = ({
           const handleAudioEnd = () => {
             setIsPlaying(null);
           };
+          
+          
+          // Event listener for page visibility change
+          const handleVisibilityChange = () => {
+            if (document.hidden && isPlaying) {
+              // Pause the audio when the page becomes hidden
+              togglePlay(isPlaying);
+            }
+          };
+          
+          document.addEventListener('visibilitychange', handleVisibilityChange);
+
 
           // Preview data is not available yet
           if (!preview) {
-            return <Loading key={artist.id}></Loading>;
+            return <ArtistLoading key={artist.id}></ArtistLoading>;
           }
 
           // Artist Card

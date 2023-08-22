@@ -19,7 +19,7 @@ const UpcomingFestivalsBar = () => {
   }
 
   return (
-    <div className="absolute left-1/2 -translate-x-1/2 bottom-10 lg:bottom-28 lg:left-[80%] flex-1 flex-col ">
+    <div className="absolute left-1/2 -translate-x-1/2 bottom-4 lg:bottom-28 lg:left-[80%] flex-1 flex-col ">
       <div
         className={`flex transition-all w-80 duration-300 px-2 flex-col-reverse  bg-gradient-to-r from-orange-700 via-30% via-orange-500 to-orange-600
                   rounded-xl shadow-md ${

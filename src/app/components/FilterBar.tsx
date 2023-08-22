@@ -74,7 +74,7 @@ const FilterBar = () => {
   });
 
   return (
-    <div className='flex justify-evenly p-3 mt-20'>
+    <div className='flex justify-evenly p-3 mt-12 sm:mt-20'>
       <ThemeProvider theme={theme}>
         <Autocomplete
           id="Artists-Grouped"

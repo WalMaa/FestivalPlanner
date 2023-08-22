@@ -45,7 +45,7 @@ If you want to see the artist previews, you need to get spotify API keys and sup
 
 # Project Status
 
-This project is actively being developed. The latest version is  `v.0.5.0`
+This project is actively being developed. The latest version is  `v.0.6.0`
 
 ## Current Features
 * Allows users to see upcoming festivals on a timeline
@@ -54,9 +54,11 @@ This project is actively being developed. The latest version is  `v.0.5.0`
 * Allows users to search for festivals
 
 ## Known issues
-* Location buttons do not scale properly on mobile
+* Filtering not implemented
+* Search: artists' festivals list does not dynamically change its height based on result size
 
 # Release History
+* `V.0.6.0` - Festival location buttons are responsive. (22-08-2023)
 * `V.0.5.0` - User can search festivals and open the locations through search. (14-08-2023)
 * `V.0.4.0` - Streamlined UI. (13-08-2023)
 * `V.0.3.1` - Enhanced responsitivity for mobile. (23-06-2023)
